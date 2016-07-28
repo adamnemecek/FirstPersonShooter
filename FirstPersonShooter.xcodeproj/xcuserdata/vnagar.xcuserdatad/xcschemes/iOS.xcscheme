@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9589A92F1D4AB2FE0084950D"
-               BuildableName = "FirstPersonShooter-macOS.app"
-               BlueprintName = "FirstPersonShooter"
+               BlueprintIdentifier = "9589A9491D4AB3FF0084950D"
+               BuildableName = "iOS.app"
+               BlueprintName = "iOS"
                ReferencedContainer = "container:FirstPersonShooter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9589A92F1D4AB2FE0084950D"
-            BuildableName = "FirstPersonShooter-macOS.app"
-            BlueprintName = "FirstPersonShooter"
+            BlueprintIdentifier = "9589A9491D4AB3FF0084950D"
+            BuildableName = "iOS.app"
+            BlueprintName = "iOS"
             ReferencedContainer = "container:FirstPersonShooter.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9589A92F1D4AB2FE0084950D"
-            BuildableName = "FirstPersonShooter-macOS.app"
-            BlueprintName = "FirstPersonShooter"
+            BlueprintIdentifier = "9589A9491D4AB3FF0084950D"
+            BuildableName = "iOS.app"
+            BlueprintName = "iOS"
             ReferencedContainer = "container:FirstPersonShooter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -74,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9589A92F1D4AB2FE0084950D"
-            BuildableName = "FirstPersonShooter-macOS.app"
-            BlueprintName = "FirstPersonShooter"
+            BlueprintIdentifier = "9589A9491D4AB3FF0084950D"
+            BuildableName = "iOS.app"
+            BlueprintName = "iOS"
             ReferencedContainer = "container:FirstPersonShooter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
