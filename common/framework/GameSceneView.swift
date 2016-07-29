@@ -43,7 +43,7 @@ class GameSceneView : SCNView {
     
 #endif
     
-    func setup2DOverlay() {
+    private func setup2DOverlay() {
         let w = bounds.size.width
         let h = bounds.size.height
         

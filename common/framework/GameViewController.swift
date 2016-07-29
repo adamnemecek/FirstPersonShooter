@@ -90,7 +90,7 @@ class GameViewController: ViewController {
         
     #endif
     
-    func setupScene() {
+    private func setupScene() {
         /*
         let scenesMgr = GameScenesManager.sharedInstance
         scenesMgr.setView(scnView)
