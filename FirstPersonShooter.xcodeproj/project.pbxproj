@@ -37,6 +37,8 @@
 		9589A97F1D4B954F0084950D /* GameLevelsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A97D1D4B954F0084950D /* GameLevelsMenu.swift */; };
 		9589A9A01D4BD0820084950D /* SCNUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A99F1D4BD0820084950D /* SCNUtils.swift */; };
 		9589A9A11D4BD0820084950D /* SCNUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A99F1D4BD0820084950D /* SCNUtils.swift */; };
+		9589A9A31D4BFAA20084950D /* HUDNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9A21D4BFAA20084950D /* HUDNode.swift */; };
+		9589A9A41D4BFAA20084950D /* HUDNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9A21D4BFAA20084950D /* HUDNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +65,7 @@
 		9589A9771D4B924D0084950D /* GameLevel2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameLevel2.swift; path = common/game/GameLevel2.swift; sourceTree = "<group>"; };
 		9589A97D1D4B954F0084950D /* GameLevelsMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameLevelsMenu.swift; path = common/game/menus/GameLevelsMenu.swift; sourceTree = "<group>"; };
 		9589A99F1D4BD0820084950D /* SCNUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SCNUtils.swift; path = common/framework/SCNUtils.swift; sourceTree = "<group>"; };
+		9589A9A21D4BFAA20084950D /* HUDNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HUDNode.swift; path = common/game/menus/HUDNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				9589A97D1D4B954F0084950D /* GameLevelsMenu.swift */,
+				9589A9A21D4BFAA20084950D /* HUDNode.swift */,
 			);
 			name = menus;
 			sourceTree = "<group>";
@@ -283,6 +287,7 @@
 				9589A96B1D4AE5180084950D /* GameScenesManager.swift in Sources */,
 				9589A9781D4B924D0084950D /* GameLevel1.swift in Sources */,
 				9589A96E1D4AE5510084950D /* GameConstants.swift in Sources */,
+				9589A9A31D4BFAA20084950D /* HUDNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +302,7 @@
 				9589A9751D4B8E6E0084950D /* GameLevel0.swift in Sources */,
 				9589A9A11D4BD0820084950D /* SCNUtils.swift in Sources */,
 				9589A94D1D4AB3FF0084950D /* AppDelegate.swift in Sources */,
+				9589A9A41D4BFAA20084950D /* HUDNode.swift in Sources */,
 				9589A9721D4B8C9C0084950D /* GameLevel.swift in Sources */,
 				9589A9791D4B924D0084950D /* GameLevel1.swift in Sources */,
 				9589A97B1D4B924D0084950D /* GameLevel2.swift in Sources */,
