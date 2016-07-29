@@ -33,4 +33,8 @@ struct Constants {
         static let UseWorkaround = true
     }
     
+    struct Zombie {
+        static let assetDirectory = "art.scnassets/common/models/zombie/"
+    }
+    
 }

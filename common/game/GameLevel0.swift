@@ -100,4 +100,30 @@ extension GameLevel0 {
     func levelCompleted() {
     }
     
+    #if os(OSX)
+    func mouseDown(theEvent: NSEvent) {
+    }
+    
+    func mouseUp(theEvent: NSEvent) {
+    }
+    
+    func keyDown(theEvent: NSEvent) {
+    }
+    
+    func keyUp(theEvent: NSEvent) {
+    }
+    
+    #else
+    func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    }
+    
+    func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    }
+    
+    func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    }
+    
+    #endif
+
+    
 }

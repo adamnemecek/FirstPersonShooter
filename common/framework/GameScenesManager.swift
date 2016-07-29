@@ -30,7 +30,7 @@ class GameScenesManager {
         guard let view = scnView else {
             fatalError("Scene View is not set")
         }
-        view.backgroundColor = SKColor.blackColor()
+        view.backgroundColor = SKColor.grayColor()
         let numLevels = 3
         
         for levelIndex in 0...numLevels-1 {
@@ -39,16 +39,21 @@ class GameScenesManager {
         }
         
         view.scene = SCNScene()
-        setGameState(.InGame, levelIndex:0)
+        setGameState(.PreGame, levelIndex:0)
     }
     
     func setGameState(gameState:GameState, levelIndex:Int) {
-        guard let view = scnView else {
+        guard let view = self.scnView else {
             fatalError("Scene View is not set")
         }
         switch(gameState) {
         case .PreGame:
-            //scnView.scene!.rootNode.hidden = true
+            currentLevel = initializeGameLevel("GameLevelsMenu")
+            let newScene = setupGameLevel(currentLevel!)
+            self.transitionScene(newScene)
+            view.scene!.rootNode.hidden = false
+            currentLevel!.startLevel()
+            view.play(self)
             break;
         case .InGame:
             currentLevelIndex = levelIndex
@@ -111,9 +116,6 @@ class GameScenesManager {
         
         // Hide scene till game starts playing
         view.scene!.rootNode.hidden = true
-        // Workaround to refresh
-        //scnView.playing = true
-        
         return scene
     }
 
@@ -124,4 +126,59 @@ class GameScenesManager {
         }
         view.presentScene(scene, withTransition: sceneTransition, incomingPointOfView:nil, completionHandler:nil)
     }
+    
+    #if os(OSX)
+    func mouseDown(theEvent: NSEvent) {
+        guard let level = currentLevel else {
+            return
+        }
+        level.mouseDown(theEvent)
+    }
+    
+    func mouseUp(theEvent: NSEvent) {
+        guard let level = currentLevel else {
+            return
+        }
+        level.mouseUp(theEvent)
+    }
+    
+    func keyDown(theEvent: NSEvent) {
+        guard let level = currentLevel else {
+            return
+        }
+        level.keyDown(theEvent)
+    }
+    
+    func keyUp(theEvent: NSEvent) {
+        guard let level = currentLevel else {
+            return
+        }
+        level.keyUp(theEvent)
+    }
+
+    #else
+    func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        guard let level = currentLevel else {
+            return
+        }
+        level.touchesBegan(touches, withEvent:event)
+    }
+    
+    func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        guard let level = currentLevel else {
+            return
+        }
+        level.touchesMoved(touches, withEvent:event)
+
+    }
+    
+    func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        guard let level = currentLevel else {
+            return
+        }
+        level.touchesEnded(touches, withEvent:event)
+
+    }
+
+    #endif
 }
