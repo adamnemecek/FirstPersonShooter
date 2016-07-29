@@ -91,13 +91,14 @@ class GameViewController: ViewController {
     #endif
     
     private func setupScene() {
-        /*
+        
         let scenesMgr = GameScenesManager.sharedInstance
         scenesMgr.setView(scnView)
         
         scenesMgr.setupLevels()
-        */
         
+        
+        /*
         // create a new scene
         let scene = SCNScene(named: "art.scnassets/ship.scn")!
         
@@ -141,7 +142,7 @@ class GameViewController: ViewController {
         
         // configure the view
         scnView.backgroundColor = SKColor.blackColor()
-
+        */
     }
     
 }
