@@ -136,48 +136,7 @@ extension GameLevelsMenu {
             return
         }
         let p = view.convertPoint(theEvent.locationInWindow, fromView: nil)
-        let hitResults = view.hitTest(p, options: nil)
-        // check that we clicked on at least one object
-        if hitResults.count > 0 {
-            // retrieved the first clicked object
-            let result: AnyObject = hitResults[0]
-            
-            
-            // get its material
-            let material = result.node!.geometry!.firstMaterial!
-            
-            // highlight it
-            SCNTransaction.begin()
-            SCNTransaction.setAnimationDuration(0.5)
-            
-            // on completion - unhighlight
-            SCNTransaction.setCompletionBlock() {
-                SCNTransaction.begin()
-                SCNTransaction.setAnimationDuration(0.5)
-                
-                material.emission.contents = NSColor.blackColor()
-                
-                SCNTransaction.commit()
-                print(result.node!.name)
-                if (result.node!.name == self.levelName1) {
-                    GameScenesManager.sharedInstance.setGameState(.InGame, levelIndex:0)
-                } else if(result.node!.name == self.levelName2) {
-                    GameScenesManager.sharedInstance.setGameState(.InGame, levelIndex:1)
-                } else if(result.node!.name == self.levelName3) {
-                    GameScenesManager.sharedInstance.setGameState(.InGame, levelIndex:2)
-                }
-                else {
-                    print("Unknown node hit")
-                }
-
-            }
-            
-            material.emission.contents = NSColor.redColor()
-            
-            SCNTransaction.commit()
-
-        }
-        
+        self.handleSelection(view, location:p)
 
     }
     
@@ -192,6 +151,13 @@ extension GameLevelsMenu {
     
     #else
     func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        guard let view = scnView else {
+            return
+        }
+        if let touch = touches.first {
+            let p = touch.locationInView(view)
+            self.handleSelection(view, location:p)
+        }
     }
     
     func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -201,5 +167,48 @@ extension GameLevelsMenu {
     }
     
     #endif
+    
+    private func handleSelection(view:SCNView, location:CGPoint) {
+        let hitResults = view.hitTest(location, options: nil)
+        // check that we clicked on at least one object
+        if hitResults.count > 0 {
+            // retrieved the first clicked object
+            let result: AnyObject = hitResults[0]
+            
+            // get its material
+            let material = result.node!.geometry!.firstMaterial!
+            
+            // highlight it
+            SCNTransaction.begin()
+            SCNTransaction.setAnimationDuration(0.5)
+            
+            // on completion - unhighlight
+            SCNTransaction.setCompletionBlock() {
+                SCNTransaction.begin()
+                SCNTransaction.setAnimationDuration(0.5)
+                
+                material.emission.contents = SKColor.blackColor()
+                
+                SCNTransaction.commit()
+                print(result.node!.name)
+                if (result.node!.name == self.levelName1) {
+                    GameScenesManager.sharedInstance.setGameState(.InGame, levelIndex:0)
+                } else if(result.node!.name == self.levelName2) {
+                    GameScenesManager.sharedInstance.setGameState(.InGame, levelIndex:1)
+                } else if(result.node!.name == self.levelName3) {
+                    GameScenesManager.sharedInstance.setGameState(.InGame, levelIndex:2)
+                }
+                else {
+                    print("Unknown node hit")
+                }
+                
+            }
+            
+            material.emission.contents = SKColor.redColor()
+            
+            SCNTransaction.commit()
+        }
+
+    }
 
 }
