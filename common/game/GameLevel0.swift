@@ -81,12 +81,6 @@ class GameLevel0 : NSObject, GameLevel {
         // set the scene to the view
         scnView.scene = scene
         
-        // allows the user to manipulate the camera
-        scnView.allowsCameraControl = true
-        
-        // show statistics such as fps and timing information
-        scnView.showsStatistics = true
-        
         // configure the view
         scnView.backgroundColor = SKColor.blackColor()
         
@@ -206,6 +200,7 @@ class GameLevel0 : NSObject, GameLevel {
     func keyDown(theEvent: NSEvent) {
         if(theEvent.keyCode == 36) {
             // Return Key
+            self.hudNode?.setHealth(0.2)
             return
         }
         if let direction = KeyboardDirection(rawValue: theEvent.keyCode) {

@@ -65,10 +65,8 @@ class GameLevelsMenu : NSObject, GameLevel {
         scn.rootNode.addChildNode(node)
         node.position = SCNVector3Make(0.0, 0.0, 0.0)
         
-        //let escene = SCNScene(named: "art.scnassets/ship.scn")!
-        //let escene = SCNScene(named:"art.scnassets/common/models/zombies/idle.dae")
         let utils = SCNUtils()
-        let filename = Constants.Zombie.assetDirectory + "idle.dae"
+        let filename = Constants.Zombie.assetDirectory + "walk.dae"
         let n:SCNNode
         (n, _) = utils.loadSceneFile(filename)
         n.scale = SCNVector3Make(0.3, 0.3, 0.3)
@@ -79,16 +77,6 @@ class GameLevelsMenu : NSObject, GameLevel {
         
         // set the scene to the view
         scnView.scene = scene
-        
-        // allows the user to manipulate the camera
-        scnView.allowsCameraControl = true
-        
-        // show statistics such as fps and timing information
-        scnView.showsStatistics = true
-        
-        // configure the view
-        scnView.backgroundColor = SKColor.blackColor()
-
         return scn
     }
     
