@@ -168,12 +168,12 @@ extension GameLevelsMenu {
             
             // highlight it
             SCNTransaction.begin()
-            SCNTransaction.setAnimationDuration(0.5)
+            SCNTransaction.setAnimationDuration(0.1)
             
             // on completion - unhighlight
             SCNTransaction.setCompletionBlock() {
                 SCNTransaction.begin()
-                SCNTransaction.setAnimationDuration(0.5)
+                SCNTransaction.setAnimationDuration(0.1)
                 
                 material.emission.contents = SKColor.blackColor()
                 

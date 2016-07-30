@@ -52,6 +52,13 @@ class SCNUtils {
         return node
     }
 
+    static func calculateAngleBetweenCameraAndNode(camera:SCNNode, node:SCNNode) -> Double {
+        let angle = atan2(Double(camera.position.y - node.position.y), Double(camera.position.z - node.position.z))
+        let angleInDegrees = -angle * 180 / M_PI
+        //print("ANGLE IN DEGREES is \(angleInDegrees)")
+        return angleInDegrees
+    }
+
 
     func cachedAnimationForKey(key:String) -> CAAnimation! {
         return animationsDict[key]

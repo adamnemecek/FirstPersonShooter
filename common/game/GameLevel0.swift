@@ -31,8 +31,12 @@ class GameLevel0 : NSObject, GameLevel {
     var scene:SCNScene?
     var scnView:SCNView?
     var hudNode:HUDNode?
+    
+    var sceneCamera:GameCamera?
     var previousTime:NSTimeInterval = 0.0
     var deltaTime:NSTimeInterval = 0.0
+    
+    var debugNode:SCNNode?
     
     override init() {
         super.init()
@@ -51,14 +55,13 @@ class GameLevel0 : NSObject, GameLevel {
         }
         
         // create and add a camera to the scene
-        let cameraNode = SCNNode()
-        cameraNode.camera = SCNCamera()
-        cameraNode.camera?.zFar = 400.0
-        scn.rootNode.addChildNode(cameraNode)
+        self.sceneCamera = GameCamera()
+        sceneCamera!.camera?.zFar = 500.0
+        scn.rootNode.addChildNode(sceneCamera!)
         
         // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 110, z: 200)
-        cameraNode.rotation = SCNVector4Make(1.0, 0.0, 0.0, -SCNFloat(M_PI_4*0.75))
+        sceneCamera!.position = SCNVector3(x: 0, y: 110, z: 200)
+        sceneCamera!.rotation = SCNVector4Make(1.0, 0.0, 0.0, -SCNFloat(M_PI_4))
 
         // create and add a light to the scene
         let lightNode = SCNNode()
@@ -85,8 +88,16 @@ class GameLevel0 : NSObject, GameLevel {
     }
     
     func renderer(aRenderer: SCNSceneRenderer, updateAtTime time: NSTimeInterval) {
+        if(previousTime == 0.0) {
+            previousTime = time
+        }
+        deltaTime = time - previousTime
+        previousTime = time
+        
         let direction = self.controllerDirection()
-        print("Direction is \(direction)")
+        //print("Direction is \(direction)")
+        
+        sceneCamera?.update(deltaTime)
     }
     
     func physicsWorld(world: SCNPhysicsWorld, didBeginContact contact: SCNPhysicsContact) {
@@ -162,8 +173,11 @@ class GameLevel0 : NSObject, GameLevel {
     }
     
     private func addProps() {
-        SCNUtils.createDebugBox(self.scene!, box:SCNBox(width: 20.0, height: 20.0, length: 20.0, chamferRadius: 1.0))
+        self.debugNode = SCNUtils.createDebugBox(self.scene!, box:SCNBox(width: 20.0, height: 20.0, length: 20.0, chamferRadius: 1.0))
+        let val = SCNUtils.calculateAngleBetweenCameraAndNode(sceneCamera!, node:debugNode!)
+        print("Angle in degrees is \(val)")
     }
+    
     
     private func addHUD() {
         guard let view = scnView else {
@@ -176,6 +190,10 @@ class GameLevel0 : NSObject, GameLevel {
         }
         self.hudNode = HUDNode(scene:overlayScene, size: overlayScene.size)
         overlayScene.addChild(hudNode!)
+    }
+    
+    private func panCamera(displacement:float2) {
+        
     }
     
     //Input Handling (keyboard/mouse/touches/Gamepad)
@@ -268,6 +286,10 @@ class GameLevel0 : NSObject, GameLevel {
         if(theEvent.keyCode == 36) {
             // Return Key
             self.hudNode?.setHealth(0.2)
+            let val = SCNUtils.calculateAngleBetweenCameraAndNode(sceneCamera!, node:debugNode!)
+            print("Angle in degrees is \(val)")
+            let radius = abs(sceneCamera!.position.z - debugNode!.position.z)
+            sceneCamera!.turnCameraAroundNode(debugNode!, radius: radius, angleInDegrees: Float(val))
             return
         }
         if let direction = KeyboardDirection(rawValue: theEvent.keyCode) {
@@ -333,7 +355,7 @@ class GameLevel0 : NSObject, GameLevel {
             let loc2 = touch.previousLocationInNode(hud.scene!)
             let disp = CGPoint(x: (loc1.x-loc2.x), y: (loc1.y - loc2.y))
             let displacement = float2(SCNFloat(disp.x), SCNFloat(disp.y))
-            //panCamera(displacement)
+            self.panCamera(displacement)
         }
         
         if let touch = padTouch {
@@ -343,7 +365,7 @@ class GameLevel0 : NSObject, GameLevel {
             let disp = CGPoint(x: (loc1.x-loc2.x), y: (loc1.y - loc2.y))
             let displacement = float2(SCNFloat(disp.x), SCNFloat(disp.y))
             controllerStoredDirection = clamp(mix(direction, displacement, t: controllerAcceleration), min: -controllerDirectionLimit, max: controllerDirectionLimit)
-            print("Direction is \(controllerStoredDirection)")
+            //print("Direction is \(controllerStoredDirection)")
             
         }
 

@@ -39,6 +39,8 @@
 		9589A9A11D4BD0820084950D /* SCNUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A99F1D4BD0820084950D /* SCNUtils.swift */; };
 		9589A9A31D4BFAA20084950D /* HUDNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9A21D4BFAA20084950D /* HUDNode.swift */; };
 		9589A9A41D4BFAA20084950D /* HUDNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9A21D4BFAA20084950D /* HUDNode.swift */; };
+		9589A9A61D4D513F0084950D /* GameCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9A51D4D513F0084950D /* GameCamera.swift */; };
+		9589A9A71D4D513F0084950D /* GameCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9A51D4D513F0084950D /* GameCamera.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,7 @@
 		9589A97D1D4B954F0084950D /* GameLevelsMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameLevelsMenu.swift; path = common/game/menus/GameLevelsMenu.swift; sourceTree = "<group>"; };
 		9589A99F1D4BD0820084950D /* SCNUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SCNUtils.swift; path = common/framework/SCNUtils.swift; sourceTree = "<group>"; };
 		9589A9A21D4BFAA20084950D /* HUDNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HUDNode.swift; path = common/game/menus/HUDNode.swift; sourceTree = "<group>"; };
+		9589A9A51D4D513F0084950D /* GameCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameCamera.swift; path = common/framework/GameCamera.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +162,7 @@
 				9589A9641D4AB6130084950D /* GameSceneView.swift */,
 				9589A96A1D4AE5180084950D /* GameScenesManager.swift */,
 				9589A9701D4B8C9C0084950D /* GameLevel.swift */,
+				9589A9A51D4D513F0084950D /* GameCamera.swift */,
 			);
 			name = framework;
 			sourceTree = "<group>";
@@ -275,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9589A9A61D4D513F0084950D /* GameCamera.swift in Sources */,
 				9589A9681D4AB7450084950D /* GameViewController.swift in Sources */,
 				9589A9361D4AB2FE0084950D /* GameView.swift in Sources */,
 				9589A9A01D4BD0820084950D /* SCNUtils.swift in Sources */,
@@ -305,6 +310,7 @@
 				9589A9A41D4BFAA20084950D /* HUDNode.swift in Sources */,
 				9589A9721D4B8C9C0084950D /* GameLevel.swift in Sources */,
 				9589A9791D4B924D0084950D /* GameLevel1.swift in Sources */,
+				9589A9A71D4D513F0084950D /* GameCamera.swift in Sources */,
 				9589A97B1D4B924D0084950D /* GameLevel2.swift in Sources */,
 				9589A96F1D4AE5510084950D /* GameConstants.swift in Sources */,
 			);
