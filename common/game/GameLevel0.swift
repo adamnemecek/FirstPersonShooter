@@ -113,7 +113,7 @@ class GameLevel0 : NSObject, GameLevel {
             print("No overlay scene")
             return
         }
-        self.hudNode = HUDNode(size: overlayScene.size)
+        self.hudNode = HUDNode(scene:overlayScene, size: overlayScene.size)
         overlayScene.addChild(hudNode!)
     }
     
