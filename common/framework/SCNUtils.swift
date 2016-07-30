@@ -4,6 +4,7 @@
 //
 
 import SceneKit
+import SpriteKit
 import QuartzCore
 
 class SCNUtils {
@@ -39,6 +40,18 @@ class SCNUtils {
 
     }
     
+    static func createDebugBox(scene:SCNScene, box:SCNBox, position:SCNVector3=SCNVector3Zero,
+                               color:SKColor=SKColor.blueColor(), rotation:SCNVector4=SCNVector4Zero) -> SCNNode
+    {
+        let geometry = box
+        geometry.firstMaterial!.diffuse.contents = color
+        let node = SCNNode(geometry: geometry)
+        node.position = position
+        node.rotation = rotation
+        scene.rootNode.addChildNode(node)
+        return node
+    }
+
 
     func cachedAnimationForKey(key:String) -> CAAnimation! {
         return animationsDict[key]

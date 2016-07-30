@@ -44,7 +44,7 @@ class GameLevel0 : NSObject, GameLevel {
         self.scnView = scnView
         
         // create a new scene
-        scene = SCNScene(named: "art.scnassets/ship.scn")!
+        scene = SCNScene()
         
         guard let scn = scene else {
             fatalError("Scene not created")
@@ -53,11 +53,13 @@ class GameLevel0 : NSObject, GameLevel {
         // create and add a camera to the scene
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
+        cameraNode.camera?.zFar = 400.0
         scn.rootNode.addChildNode(cameraNode)
         
         // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
-        
+        cameraNode.position = SCNVector3(x: 0, y: 110, z: 200)
+        cameraNode.rotation = SCNVector4Make(1.0, 0.0, 0.0, -SCNFloat(M_PI_4*0.75))
+
         // create and add a light to the scene
         let lightNode = SCNNode()
         lightNode.light = SCNLight()
@@ -72,17 +74,10 @@ class GameLevel0 : NSObject, GameLevel {
         ambientLightNode.light!.color = SKColor.darkGrayColor()
         scn.rootNode.addChildNode(ambientLightNode)
         
-        // retrieve the ship node
-        let ship = scn.rootNode.childNodeWithName("ship", recursively: true)!
+        self.addFloorAndWalls()
+        self.addProps()
         
-        // animate the 3d object
-        ship.runAction(SCNAction.repeatActionForever(SCNAction.rotateByX(0, y: 2, z: 0, duration: 1)))
-        
-        // set the scene to the view
-        scnView.scene = scene
-        
-        // configure the view
-        scnView.backgroundColor = SKColor.blackColor()
+        //scnView.allowsCameraControl = true
         
         self.addHUD()
         self.setupGameControllers()
@@ -96,6 +91,78 @@ class GameLevel0 : NSObject, GameLevel {
     
     func physicsWorld(world: SCNPhysicsWorld, didBeginContact contact: SCNPhysicsContact) {
         print("Contact between nodes: \(contact.nodeA.name) and \(contact.nodeB.name)")
+    }
+    
+    private func addFloorAndWalls() {
+        //add floor
+        let floorNode = SCNNode()
+        let floor = SCNFloor()
+        floor.reflectionFalloffEnd = 2.0
+        floorNode.geometry = floor
+        floorNode.geometry?.firstMaterial?.diffuse.contents = "art.scnassets/level0/wood.png"
+        floorNode.geometry?.firstMaterial?.diffuse.contentsTransform = SCNMatrix4MakeScale(2, 2, 1); //scale the wood texture
+        floorNode.geometry?.firstMaterial?.locksAmbientWithDiffuse = true
+        floorNode.physicsBody = SCNPhysicsBody.staticBody()
+        scene?.rootNode.addChildNode(floorNode)
+
+        //add walls
+        var wall = SCNNode(geometry:SCNBox(width:400, height:100, length:4, chamferRadius:0))
+        wall.geometry!.firstMaterial!.diffuse.contents = "art.scnassets/level0/wall.jpg"
+        wall.geometry!.firstMaterial!.diffuse.contentsTransform = SCNMatrix4Mult(SCNMatrix4MakeScale(24, 2, 1), SCNMatrix4MakeTranslation(0, 1, 0));
+        wall.geometry!.firstMaterial!.diffuse.wrapS = SCNWrapMode.Repeat;
+        wall.geometry!.firstMaterial!.diffuse.wrapT = SCNWrapMode.Mirror;
+        wall.geometry!.firstMaterial!.doubleSided = false;
+        wall.castsShadow = false;
+        wall.geometry!.firstMaterial!.locksAmbientWithDiffuse = true;
+        
+        wall.position = SCNVector3Make(0, 50, -198);
+        wall.name = "FrontWall"
+        wall.physicsBody = SCNPhysicsBody.staticBody()
+        wall.physicsBody!.collisionBitMask = ColliderType.Player.rawValue | ColliderType.Enemy.rawValue
+        wall.physicsBody!.categoryBitMask = ColliderType.FrontWall.rawValue
+        scene?.rootNode.addChildNode(wall)
+        
+        wall = wall.clone()
+        wall.position = SCNVector3Make(-202, 50, 0);
+        wall.name = "LeftWall"
+        wall.rotation = SCNVector4Make(0.0, 1.0, 0.0, SCNFloat(M_PI_2));
+        wall.physicsBody = SCNPhysicsBody.staticBody()
+        wall.physicsBody!.collisionBitMask = ColliderType.Player.rawValue | ColliderType.Enemy.rawValue
+        wall.physicsBody!.categoryBitMask = ColliderType.LeftWall.rawValue
+        scene?.rootNode.addChildNode(wall)
+        
+        wall = wall.clone()
+        wall.position = SCNVector3Make(202, 50, 0);
+        wall.name = "RightWall"
+        wall.rotation = SCNVector4Make(0.0, 1.0, 0.0, -SCNFloat(M_PI_2));
+        wall.physicsBody = SCNPhysicsBody.staticBody()
+        wall.physicsBody!.collisionBitMask = ColliderType.Player.rawValue | ColliderType.Enemy.rawValue
+        wall.physicsBody!.categoryBitMask = ColliderType.RightWall.rawValue
+        scene?.rootNode.addChildNode(wall)
+        
+        let backWall = SCNNode(geometry:SCNPlane(width:400, height:100))
+        backWall.name = "BackWall"
+        backWall.geometry!.firstMaterial = wall.geometry!.firstMaterial;
+        backWall.position = SCNVector3Make(0, 50, 198);
+        backWall.rotation = SCNVector4Make(0.0, 1.0, 0.0, SCNFloat(M_PI));
+        backWall.castsShadow = false;
+        backWall.physicsBody = SCNPhysicsBody.staticBody()
+        wall.physicsBody!.collisionBitMask = ColliderType.Player.rawValue | ColliderType.Enemy.rawValue
+        wall.physicsBody!.categoryBitMask = ColliderType.BackWall.rawValue
+        scene?.rootNode.addChildNode(backWall)
+        
+        // add ceiling
+        let ceilNode = SCNNode(geometry:SCNPlane(width:400, height:400))
+        ceilNode.position = SCNVector3Make(0, 100, 0);
+        ceilNode.rotation = SCNVector4Make(1.0, 0.0, 0.0, SCNFloat(M_PI_2));
+        ceilNode.geometry!.firstMaterial!.doubleSided = false;
+        ceilNode.castsShadow = false
+        ceilNode.geometry!.firstMaterial!.locksAmbientWithDiffuse = true;
+        scene?.rootNode.addChildNode(ceilNode)
+    }
+    
+    private func addProps() {
+        SCNUtils.createDebugBox(self.scene!, box:SCNBox(width: 20.0, height: 20.0, length: 20.0, chamferRadius: 1.0))
     }
     
     private func addHUD() {

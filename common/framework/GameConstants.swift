@@ -28,6 +28,20 @@ import Foundation
     PostGame
 }
 
+enum ColliderType: Int {
+    case Ground = 2048
+    case Bullet = 4
+    case Player = 8
+    case Enemy = 16
+    case LeftWall = 32
+    case RightWall = 64
+    case BackWall = 128
+    case FrontWall = 256
+    case Door = 512
+    case PowerUp = 1024
+    
+}
+
 struct Constants {
     struct Configuration {
         static let UseWorkaround = true
