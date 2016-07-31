@@ -37,6 +37,7 @@ class GameLevel0 : NSObject, GameLevel {
     var deltaTime:NSTimeInterval = 0.0
     
     var debugNode:SCNNode?
+    var firstPerson = true
     
     override init() {
         super.init()
@@ -97,7 +98,6 @@ class GameLevel0 : NSObject, GameLevel {
         let direction = self.controllerDirection()
         //print("Direction is \(direction)")
         
-        sceneCamera?.update(deltaTime)
     }
     
     func physicsWorld(world: SCNPhysicsWorld, didBeginContact contact: SCNPhysicsContact) {
@@ -173,9 +173,7 @@ class GameLevel0 : NSObject, GameLevel {
     }
     
     private func addProps() {
-        self.debugNode = SCNUtils.createDebugBox(self.scene!, box:SCNBox(width: 20.0, height: 20.0, length: 20.0, chamferRadius: 1.0))
-        let val = SCNUtils.calculateAngleBetweenCameraAndNode(sceneCamera!, node:debugNode!)
-        print("Angle in degrees is \(val)")
+        self.debugNode = SCNUtils.createDebugBox(self.scene!, box:SCNBox(width: 20.0, height: 20.0, length: 20.0, chamferRadius: 1.0), position:SCNVector3(-150.0, 0.0, -10.0))
     }
     
     
@@ -193,7 +191,14 @@ class GameLevel0 : NSObject, GameLevel {
     }
     
     private func panCamera(displacement:float2) {
-        
+        print("Displacement is \(displacement)")
+        if(abs(displacement.x) > abs(displacement.y)) {
+            //Need to yaw
+            sceneCamera?.eulerAngles.y = (sceneCamera?.eulerAngles.y)! + SCNFloat(SCNUtils.degrees2Radians(Double(displacement.x * 0.05)))
+        } else {
+            //Need to pitch
+            sceneCamera?.eulerAngles.x = (sceneCamera?.eulerAngles.x)! + SCNFloat(SCNUtils.degrees2Radians(Double(displacement.y*0.05)))
+        }
     }
     
     //Input Handling (keyboard/mouse/touches/Gamepad)
@@ -285,11 +290,12 @@ class GameLevel0 : NSObject, GameLevel {
     func keyDown(theEvent: NSEvent) {
         if(theEvent.keyCode == 36) {
             // Return Key
+            
             self.hudNode?.setHealth(0.2)
             let val = SCNUtils.calculateAngleBetweenCameraAndNode(sceneCamera!, node:debugNode!)
-            print("Angle in degrees is \(val)")
             let radius = abs(sceneCamera!.position.z - debugNode!.position.z)
             sceneCamera!.turnCameraAroundNode(debugNode!, radius: radius, angleInDegrees: Float(val))
+            
             return
         }
         if let direction = KeyboardDirection(rawValue: theEvent.keyCode) {
@@ -350,12 +356,13 @@ class GameLevel0 : NSObject, GameLevel {
             return
         }
         if let touch = panningTouch {
-            print("PAN CAMERA")
             let loc1 = touch.locationInNode(hud.scene!)
             let loc2 = touch.previousLocationInNode(hud.scene!)
             let disp = CGPoint(x: (loc1.x-loc2.x), y: (loc1.y - loc2.y))
             let displacement = float2(SCNFloat(disp.x), SCNFloat(disp.y))
-            self.panCamera(displacement)
+            if(firstPerson == false) {
+                self.panCamera(displacement)
+            }
         }
         
         if let touch = padTouch {

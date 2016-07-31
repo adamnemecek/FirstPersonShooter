@@ -9,6 +9,13 @@ import QuartzCore
 
 class SCNUtils {
     var animationsDict = Dictionary<String, CAAnimation>()
+    
+    static func degrees2Radians(degrees:Double) -> Double {
+        return (M_PI * degrees) / 180.0
+    }
+    static func radians2Degrees(radians:Double) -> Double {
+        return (180.0 * radians) / M_PI
+    }
 
     func loadSceneFile(filename:String) -> (SCNNode, SCNNode) {
         let escene = SCNScene(named:filename)

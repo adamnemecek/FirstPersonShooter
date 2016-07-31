@@ -13,14 +13,11 @@ class GameCamera : SCNNode {
     
     override init() {
         super.init()
-        setup()
+        self.camera = SCNCamera()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func update(deltaTime:NSTimeInterval) {
     }
     
     func turnCameraAroundNode(node:SCNNode, radius:CGFloat, angleInDegrees:Float)
@@ -65,8 +62,5 @@ class GameCamera : SCNNode {
         
         return transform;
     }
-
-    private func setup() {
-        self.camera = SCNCamera()
-    }
+    
 }
