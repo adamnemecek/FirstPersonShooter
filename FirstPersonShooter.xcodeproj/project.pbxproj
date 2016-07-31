@@ -41,6 +41,16 @@
 		9589A9A41D4BFAA20084950D /* HUDNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9A21D4BFAA20084950D /* HUDNode.swift */; };
 		9589A9A61D4D513F0084950D /* GameCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9A51D4D513F0084950D /* GameCamera.swift */; };
 		9589A9A71D4D513F0084950D /* GameCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9A51D4D513F0084950D /* GameCamera.swift */; };
+		9589A9AC1D4E39910084950D /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9AB1D4E39910084950D /* EntityManager.swift */; };
+		9589A9AD1D4E39910084950D /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9AB1D4E39910084950D /* EntityManager.swift */; };
+		9589A9AF1D4E3A300084950D /* MoveComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9AE1D4E3A300084950D /* MoveComponent.swift */; };
+		9589A9B01D4E3A300084950D /* MoveComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9AE1D4E3A300084950D /* MoveComponent.swift */; };
+		9589A9B21D4E3A450084950D /* RenderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9B11D4E3A450084950D /* RenderComponent.swift */; };
+		9589A9B31D4E3A450084950D /* RenderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9B11D4E3A450084950D /* RenderComponent.swift */; };
+		9589A9B51D4E3A590084950D /* StateComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9B41D4E3A590084950D /* StateComponent.swift */; };
+		9589A9B61D4E3A590084950D /* StateComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9B41D4E3A590084950D /* StateComponent.swift */; };
+		9589A9B81D4E3B540084950D /* MoveBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9B71D4E3B540084950D /* MoveBehavior.swift */; };
+		9589A9B91D4E3B540084950D /* MoveBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9B71D4E3B540084950D /* MoveBehavior.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +79,11 @@
 		9589A99F1D4BD0820084950D /* SCNUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SCNUtils.swift; path = common/framework/SCNUtils.swift; sourceTree = "<group>"; };
 		9589A9A21D4BFAA20084950D /* HUDNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HUDNode.swift; path = common/game/menus/HUDNode.swift; sourceTree = "<group>"; };
 		9589A9A51D4D513F0084950D /* GameCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameCamera.swift; path = common/framework/GameCamera.swift; sourceTree = "<group>"; };
+		9589A9AB1D4E39910084950D /* EntityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntityManager.swift; path = common/game/entities/EntityManager.swift; sourceTree = "<group>"; };
+		9589A9AE1D4E3A300084950D /* MoveComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoveComponent.swift; path = common/game/components/MoveComponent.swift; sourceTree = "<group>"; };
+		9589A9B11D4E3A450084950D /* RenderComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RenderComponent.swift; path = common/game/components/RenderComponent.swift; sourceTree = "<group>"; };
+		9589A9B41D4E3A590084950D /* StateComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StateComponent.swift; path = common/game/components/StateComponent.swift; sourceTree = "<group>"; };
+		9589A9B71D4E3B540084950D /* MoveBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoveBehavior.swift; path = common/game/components/MoveBehavior.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +160,9 @@
 		9589A95F1D4AB4BF0084950D /* game */ = {
 			isa = PBXGroup;
 			children = (
+				9589A9AA1D4E395B0084950D /* states */,
+				9589A9A91D4E39500084950D /* components */,
+				9589A9A81D4E39460084950D /* entities */,
 				9589A97C1D4B95340084950D /* menus */,
 				9589A9761D4B924D0084950D /* GameLevel1.swift */,
 				9589A9771D4B924D0084950D /* GameLevel2.swift */,
@@ -174,6 +192,32 @@
 				9589A9A21D4BFAA20084950D /* HUDNode.swift */,
 			);
 			name = menus;
+			sourceTree = "<group>";
+		};
+		9589A9A81D4E39460084950D /* entities */ = {
+			isa = PBXGroup;
+			children = (
+				9589A9AB1D4E39910084950D /* EntityManager.swift */,
+			);
+			name = entities;
+			sourceTree = "<group>";
+		};
+		9589A9A91D4E39500084950D /* components */ = {
+			isa = PBXGroup;
+			children = (
+				9589A9AE1D4E3A300084950D /* MoveComponent.swift */,
+				9589A9B11D4E3A450084950D /* RenderComponent.swift */,
+				9589A9B41D4E3A590084950D /* StateComponent.swift */,
+				9589A9B71D4E3B540084950D /* MoveBehavior.swift */,
+			);
+			name = components;
+			sourceTree = "<group>";
+		};
+		9589A9AA1D4E395B0084950D /* states */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = states;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,9 +328,14 @@
 				9589A9361D4AB2FE0084950D /* GameView.swift in Sources */,
 				9589A9A01D4BD0820084950D /* SCNUtils.swift in Sources */,
 				9589A9711D4B8C9C0084950D /* GameLevel.swift in Sources */,
+				9589A9AC1D4E39910084950D /* EntityManager.swift in Sources */,
 				9589A97A1D4B924D0084950D /* GameLevel2.swift in Sources */,
+				9589A9B21D4E3A450084950D /* RenderComponent.swift in Sources */,
 				9589A9651D4AB6130084950D /* GameSceneView.swift in Sources */,
+				9589A9B51D4E3A590084950D /* StateComponent.swift in Sources */,
+				9589A9AF1D4E3A300084950D /* MoveComponent.swift in Sources */,
 				9589A9341D4AB2FE0084950D /* AppDelegate.swift in Sources */,
+				9589A9B81D4E3B540084950D /* MoveBehavior.swift in Sources */,
 				9589A97E1D4B954F0084950D /* GameLevelsMenu.swift in Sources */,
 				9589A9741D4B8E6E0084950D /* GameLevel0.swift in Sources */,
 				9589A96B1D4AE5180084950D /* GameScenesManager.swift in Sources */,
@@ -303,15 +352,20 @@
 				9589A96C1D4AE5180084950D /* GameScenesManager.swift in Sources */,
 				9589A9691D4AB7450084950D /* GameViewController.swift in Sources */,
 				9589A9661D4AB6130084950D /* GameSceneView.swift in Sources */,
+				9589A9B31D4E3A450084950D /* RenderComponent.swift in Sources */,
 				9589A97F1D4B954F0084950D /* GameLevelsMenu.swift in Sources */,
 				9589A9751D4B8E6E0084950D /* GameLevel0.swift in Sources */,
 				9589A9A11D4BD0820084950D /* SCNUtils.swift in Sources */,
 				9589A94D1D4AB3FF0084950D /* AppDelegate.swift in Sources */,
 				9589A9A41D4BFAA20084950D /* HUDNode.swift in Sources */,
+				9589A9AD1D4E39910084950D /* EntityManager.swift in Sources */,
 				9589A9721D4B8C9C0084950D /* GameLevel.swift in Sources */,
+				9589A9B61D4E3A590084950D /* StateComponent.swift in Sources */,
 				9589A9791D4B924D0084950D /* GameLevel1.swift in Sources */,
+				9589A9B01D4E3A300084950D /* MoveComponent.swift in Sources */,
 				9589A9A71D4D513F0084950D /* GameCamera.swift in Sources */,
 				9589A97B1D4B924D0084950D /* GameLevel2.swift in Sources */,
+				9589A9B91D4E3B540084950D /* MoveBehavior.swift in Sources */,
 				9589A96F1D4AE5510084950D /* GameConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
