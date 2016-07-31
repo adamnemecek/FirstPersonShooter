@@ -8,26 +8,12 @@
 
 import SceneKit
 import SpriteKit
+import GameplayKit
 import GameController
-
-private enum KeyboardDirection : UInt16 {
-    case left   = 123
-    case right  = 124
-    case down   = 125
-    case up     = 126
-    
-    var vector : float2 {
-        switch self {
-        case .up:    return float2( 0, -1)
-        case .down:  return float2( 0,  1)
-        case .left:  return float2(-1,  0)
-        case .right: return float2( 1,  0)
-        }
-    }
-}
 
 
 class GameLevel0 : NSObject, GameLevel {
+    
     var scene:SCNScene?
     var scnView:SCNView?
     var hudNode:HUDNode?
@@ -37,6 +23,7 @@ class GameLevel0 : NSObject, GameLevel {
     var deltaTime:NSTimeInterval = 0.0
     
     var debugNode:SCNNode?
+    var entityManager: EntityManager?
     var firstPerson = true
     
     override init() {
@@ -85,6 +72,10 @@ class GameLevel0 : NSObject, GameLevel {
         
         self.addHUD()
         self.setupGameControllers()
+        
+        let graph = GKGridGraph(fromGridStartingAt: (vector_int2)(0,0), width: 64, height: 64, diagonalsAllowed: false)
+        entityManager = EntityManager(scene: self.scene!, navigationGraph:graph)
+        entityManager!.createZombie()
         return scn
     }
     
@@ -95,8 +86,10 @@ class GameLevel0 : NSObject, GameLevel {
         deltaTime = time - previousTime
         previousTime = time
         
-        let direction = self.controllerDirection()
+        _ = self.controllerDirection()
         //print("Direction is \(direction)")
+        
+        entityManager?.update(deltaTime)
         
     }
     

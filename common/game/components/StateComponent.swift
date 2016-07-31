@@ -17,18 +17,18 @@ class StateComponent: GKComponent {
     init(entityManager:EntityManager, enemy:GKEntity) {
         self.entityManager = entityManager
         self.enemy = enemy
-        /*
+        
         let idle = ZombieIdleState(entityManager:entityManager, enemy:enemy)
         let chase = ZombieChaseState(entityManager:entityManager, enemy:enemy)
         let flee = ZombieFleeState(entityManager:entityManager, enemy:enemy)
         let dead = ZombieDeadState(entityManager:entityManager, enemy:enemy)
         
         stateMachine = GKStateMachine(states:[idle, chase, flee, dead])
-        stateMachine.enterState(ZombieChaseState.self)
-        */
+        stateMachine!.enterState(ZombieChaseState.self)
+        
     }
     
     override func updateWithDeltaTime(seconds: NSTimeInterval) {
-        stateMachine?.updateWithDeltaTime(seconds)
+        stateMachine!.updateWithDeltaTime(seconds)
     }
 }

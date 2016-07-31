@@ -51,6 +51,18 @@
 		9589A9B61D4E3A590084950D /* StateComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9B41D4E3A590084950D /* StateComponent.swift */; };
 		9589A9B81D4E3B540084950D /* MoveBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9B71D4E3B540084950D /* MoveBehavior.swift */; };
 		9589A9B91D4E3B540084950D /* MoveBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9B71D4E3B540084950D /* MoveBehavior.swift */; };
+		9589A9BB1D4E44210084950D /* ZombieEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9BA1D4E44210084950D /* ZombieEntity.swift */; };
+		9589A9BC1D4E44210084950D /* ZombieEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9BA1D4E44210084950D /* ZombieEntity.swift */; };
+		9589A9BE1D4E45A90084950D /* HealthComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9BD1D4E45A90084950D /* HealthComponent.swift */; };
+		9589A9BF1D4E45A90084950D /* HealthComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9BD1D4E45A90084950D /* HealthComponent.swift */; };
+		9589A9C41D4E46380084950D /* ZombieChaseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9C01D4E46380084950D /* ZombieChaseState.swift */; };
+		9589A9C51D4E46380084950D /* ZombieChaseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9C01D4E46380084950D /* ZombieChaseState.swift */; };
+		9589A9C61D4E46380084950D /* ZombieDeadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9C11D4E46380084950D /* ZombieDeadState.swift */; };
+		9589A9C71D4E46380084950D /* ZombieDeadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9C11D4E46380084950D /* ZombieDeadState.swift */; };
+		9589A9C81D4E46380084950D /* ZombieFleeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9C21D4E46380084950D /* ZombieFleeState.swift */; };
+		9589A9C91D4E46380084950D /* ZombieFleeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9C21D4E46380084950D /* ZombieFleeState.swift */; };
+		9589A9CA1D4E46380084950D /* ZombieIdleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9C31D4E46380084950D /* ZombieIdleState.swift */; };
+		9589A9CB1D4E46380084950D /* ZombieIdleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9C31D4E46380084950D /* ZombieIdleState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +96,12 @@
 		9589A9B11D4E3A450084950D /* RenderComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RenderComponent.swift; path = common/game/components/RenderComponent.swift; sourceTree = "<group>"; };
 		9589A9B41D4E3A590084950D /* StateComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StateComponent.swift; path = common/game/components/StateComponent.swift; sourceTree = "<group>"; };
 		9589A9B71D4E3B540084950D /* MoveBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoveBehavior.swift; path = common/game/components/MoveBehavior.swift; sourceTree = "<group>"; };
+		9589A9BA1D4E44210084950D /* ZombieEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZombieEntity.swift; path = common/game/entities/ZombieEntity.swift; sourceTree = "<group>"; };
+		9589A9BD1D4E45A90084950D /* HealthComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HealthComponent.swift; path = common/game/components/HealthComponent.swift; sourceTree = "<group>"; };
+		9589A9C01D4E46380084950D /* ZombieChaseState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZombieChaseState.swift; path = common/game/states/ZombieChaseState.swift; sourceTree = "<group>"; };
+		9589A9C11D4E46380084950D /* ZombieDeadState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZombieDeadState.swift; path = common/game/states/ZombieDeadState.swift; sourceTree = "<group>"; };
+		9589A9C21D4E46380084950D /* ZombieFleeState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZombieFleeState.swift; path = common/game/states/ZombieFleeState.swift; sourceTree = "<group>"; };
+		9589A9C31D4E46380084950D /* ZombieIdleState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZombieIdleState.swift; path = common/game/states/ZombieIdleState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +215,7 @@
 		9589A9A81D4E39460084950D /* entities */ = {
 			isa = PBXGroup;
 			children = (
+				9589A9BA1D4E44210084950D /* ZombieEntity.swift */,
 				9589A9AB1D4E39910084950D /* EntityManager.swift */,
 			);
 			name = entities;
@@ -205,6 +224,7 @@
 		9589A9A91D4E39500084950D /* components */ = {
 			isa = PBXGroup;
 			children = (
+				9589A9BD1D4E45A90084950D /* HealthComponent.swift */,
 				9589A9AE1D4E3A300084950D /* MoveComponent.swift */,
 				9589A9B11D4E3A450084950D /* RenderComponent.swift */,
 				9589A9B41D4E3A590084950D /* StateComponent.swift */,
@@ -216,6 +236,10 @@
 		9589A9AA1D4E395B0084950D /* states */ = {
 			isa = PBXGroup;
 			children = (
+				9589A9C01D4E46380084950D /* ZombieChaseState.swift */,
+				9589A9C11D4E46380084950D /* ZombieDeadState.swift */,
+				9589A9C21D4E46380084950D /* ZombieFleeState.swift */,
+				9589A9C31D4E46380084950D /* ZombieIdleState.swift */,
 			);
 			name = states;
 			sourceTree = "<group>";
@@ -325,6 +349,8 @@
 			files = (
 				9589A9A61D4D513F0084950D /* GameCamera.swift in Sources */,
 				9589A9681D4AB7450084950D /* GameViewController.swift in Sources */,
+				9589A9C41D4E46380084950D /* ZombieChaseState.swift in Sources */,
+				9589A9CA1D4E46380084950D /* ZombieIdleState.swift in Sources */,
 				9589A9361D4AB2FE0084950D /* GameView.swift in Sources */,
 				9589A9A01D4BD0820084950D /* SCNUtils.swift in Sources */,
 				9589A9711D4B8C9C0084950D /* GameLevel.swift in Sources */,
@@ -333,8 +359,11 @@
 				9589A9B21D4E3A450084950D /* RenderComponent.swift in Sources */,
 				9589A9651D4AB6130084950D /* GameSceneView.swift in Sources */,
 				9589A9B51D4E3A590084950D /* StateComponent.swift in Sources */,
+				9589A9C81D4E46380084950D /* ZombieFleeState.swift in Sources */,
+				9589A9C61D4E46380084950D /* ZombieDeadState.swift in Sources */,
 				9589A9AF1D4E3A300084950D /* MoveComponent.swift in Sources */,
 				9589A9341D4AB2FE0084950D /* AppDelegate.swift in Sources */,
+				9589A9BB1D4E44210084950D /* ZombieEntity.swift in Sources */,
 				9589A9B81D4E3B540084950D /* MoveBehavior.swift in Sources */,
 				9589A97E1D4B954F0084950D /* GameLevelsMenu.swift in Sources */,
 				9589A9741D4B8E6E0084950D /* GameLevel0.swift in Sources */,
@@ -342,6 +371,7 @@
 				9589A9781D4B924D0084950D /* GameLevel1.swift in Sources */,
 				9589A96E1D4AE5510084950D /* GameConstants.swift in Sources */,
 				9589A9A31D4BFAA20084950D /* HUDNode.swift in Sources */,
+				9589A9BE1D4E45A90084950D /* HealthComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,9 +380,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9589A96C1D4AE5180084950D /* GameScenesManager.swift in Sources */,
+				9589A9C71D4E46380084950D /* ZombieDeadState.swift in Sources */,
 				9589A9691D4AB7450084950D /* GameViewController.swift in Sources */,
 				9589A9661D4AB6130084950D /* GameSceneView.swift in Sources */,
+				9589A9BC1D4E44210084950D /* ZombieEntity.swift in Sources */,
 				9589A9B31D4E3A450084950D /* RenderComponent.swift in Sources */,
+				9589A9C91D4E46380084950D /* ZombieFleeState.swift in Sources */,
 				9589A97F1D4B954F0084950D /* GameLevelsMenu.swift in Sources */,
 				9589A9751D4B8E6E0084950D /* GameLevel0.swift in Sources */,
 				9589A9A11D4BD0820084950D /* SCNUtils.swift in Sources */,
@@ -361,10 +394,13 @@
 				9589A9AD1D4E39910084950D /* EntityManager.swift in Sources */,
 				9589A9721D4B8C9C0084950D /* GameLevel.swift in Sources */,
 				9589A9B61D4E3A590084950D /* StateComponent.swift in Sources */,
+				9589A9BF1D4E45A90084950D /* HealthComponent.swift in Sources */,
 				9589A9791D4B924D0084950D /* GameLevel1.swift in Sources */,
 				9589A9B01D4E3A300084950D /* MoveComponent.swift in Sources */,
+				9589A9C51D4E46380084950D /* ZombieChaseState.swift in Sources */,
 				9589A9A71D4D513F0084950D /* GameCamera.swift in Sources */,
 				9589A97B1D4B924D0084950D /* GameLevel2.swift in Sources */,
+				9589A9CB1D4E46380084950D /* ZombieIdleState.swift in Sources */,
 				9589A9B91D4E3B540084950D /* MoveBehavior.swift in Sources */,
 				9589A96F1D4AE5510084950D /* GameConstants.swift in Sources */,
 			);

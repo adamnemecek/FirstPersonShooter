@@ -23,6 +23,7 @@ class MoveComponent : GKAgent2D, GKAgentDelegate {
         self.radius = radius
         print(self.mass)
         self.mass = 0.01
+        
     }
 
     func agentWillUpdate(agent: GKAgent) {
@@ -48,7 +49,7 @@ class MoveComponent : GKAgent2D, GKAgentDelegate {
     
     override func updateWithDeltaTime(seconds: NSTimeInterval) {
         super.updateWithDeltaTime(seconds)
-        behavior = MoveBehavior(targetSpeed: maxSpeed, seek: self, avoid: [], path:path)
+        behavior = MoveBehavior(targetSpeed: maxSpeed, seek: self, avoid: [])
     }
 
 }
