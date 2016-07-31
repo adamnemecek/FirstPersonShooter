@@ -11,7 +11,7 @@ import SpriteKit
 
 class MoveBehavior: GKBehavior {
     
-    init(targetSpeed: Float, seek: GKAgent, avoid: [GKAgent]) {
+    init(targetSpeed: Float, seek: GKAgent, avoid: [GKAgent], path:GKPath) {
         super.init()
         
         if targetSpeed > 0 {
@@ -22,7 +22,7 @@ class MoveBehavior: GKBehavior {
             
             //setWeight(1.0, forGoal: GKGoal(toAvoidAgents: avoid, maxPredictionTime: 1.0))
             
-            //setWeight(1.0, forGoal:GKGoal(toFollowPath: path, maxPredictionTime: 1.0, forward: true))
+            setWeight(1.0, forGoal:GKGoal(toFollowPath: path, maxPredictionTime: 1.0, forward: true))
         }
     }
 }

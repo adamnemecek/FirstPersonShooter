@@ -12,6 +12,19 @@ import SceneKit
 class MoveComponent : GKAgent2D, GKAgentDelegate {
     
     let entityManager: EntityManager
+    var points:[vector_float2] = [
+        float2(0.0, 25.0),
+        float2(25.0, 75.0),
+        float2(50.0, 75.0),
+        float2(100.0, 100.0),
+        float2(175.0, 75.0),
+        float2(150.0, 0.0),
+        float2(0.0, -100.0),
+        float2(-100.0, -50.0),
+        float2(-100.0, 0.0),
+        float2(-50.0, 25.0)
+    ]
+
     var path:GKPath!
     
     init(maxSpeed: Float, maxAcceleration: Float, radius: Float, entityManager: EntityManager) {
@@ -23,6 +36,8 @@ class MoveComponent : GKAgent2D, GKAgentDelegate {
         self.radius = radius
         print(self.mass)
         self.mass = 0.01
+        
+        self.path = GKPath(points: &points, count: 10, radius: 10.0, cyclical: true)
         
     }
 
@@ -49,7 +64,7 @@ class MoveComponent : GKAgent2D, GKAgentDelegate {
     
     override func updateWithDeltaTime(seconds: NSTimeInterval) {
         super.updateWithDeltaTime(seconds)
-        behavior = MoveBehavior(targetSpeed: maxSpeed, seek: self, avoid: [])
+        behavior = MoveBehavior(targetSpeed: maxSpeed, seek: self, avoid: [], path:path)
     }
 
 }
