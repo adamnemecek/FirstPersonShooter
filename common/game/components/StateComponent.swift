@@ -11,24 +11,39 @@ import GameplayKit
 class StateComponent: GKComponent {
     
     var stateMachine:GKStateMachine?
-    var enemy:GKEntity
     var entityManager:EntityManager
     
-    init(entityManager:EntityManager, enemy:GKEntity) {
+    init(entityManager:EntityManager, entity:GKEntity) {
         self.entityManager = entityManager
-        self.enemy = enemy
         
-        let idle = ZombieIdleState(entityManager:entityManager, enemy:enemy)
-        let chase = ZombieChaseState(entityManager:entityManager, enemy:enemy)
-        let flee = ZombieFleeState(entityManager:entityManager, enemy:enemy)
-        let dead = ZombieDeadState(entityManager:entityManager, enemy:enemy)
+        if let _ = entity as? ZombieEntity {
+            let idle = ZombieIdleState(entityManager:entityManager, enemy:entity)
+            let chase = ZombieChaseState(entityManager:entityManager, enemy:entity)
+            let flee = ZombieFleeState(entityManager:entityManager, enemy:entity)
+            let dead = ZombieDeadState(entityManager:entityManager, enemy:entity)
+            
+            stateMachine = GKStateMachine(states:[idle, chase, flee, dead])
+            stateMachine!.enterState(ZombieChaseState.self)
+
+        }
+        else if let _ = entity as? PlayerEntity {
+            
+            let idle = PlayerIdleState(entityManager:entityManager, player:entity)
+            let walk = PlayerWalkState(entityManager:entityManager, player:entity)
+            let attack = PlayerAttackState(entityManager:entityManager, player:entity)
+            let dead = PlayerDeadState(entityManager:entityManager, player:entity)
+            
+            stateMachine = GKStateMachine(states:[idle, walk, attack, dead])
+            stateMachine!.enterState(PlayerIdleState.self)
+            
+        } else {
+            return
+        }
         
-        stateMachine = GKStateMachine(states:[idle, chase, flee, dead])
-        stateMachine!.enterState(ZombieChaseState.self)
         
     }
     
     override func updateWithDeltaTime(seconds: NSTimeInterval) {
-        stateMachine!.updateWithDeltaTime(seconds)
+        stateMachine?.updateWithDeltaTime(seconds)
     }
 }

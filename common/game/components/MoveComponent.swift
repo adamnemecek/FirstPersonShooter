@@ -42,7 +42,7 @@ class MoveComponent : GKAgent2D, GKAgentDelegate {
     }
 
     func agentWillUpdate(agent: GKAgent) {
-        print("In agent will update, position:\(position)")
+        //print("In agent will update, position:\(position)")
         guard let renderComponent = entity?.componentForClass(RenderComponent.self) else {
             return
         }
@@ -51,7 +51,7 @@ class MoveComponent : GKAgent2D, GKAgentDelegate {
     }
     
     func agentDidUpdate(agent: GKAgent) {
-        print("In agent did update, position:\(position)")
+        //print("In agent did update, position:\(position)")
         guard let renderComponent = entity?.componentForClass(RenderComponent.self) else {
             return
         }

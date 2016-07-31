@@ -58,10 +58,14 @@ enum KeyboardDirection : UInt16 {
     }
 }
 
-
 struct Constants {
     struct Configuration {
         static let UseWorkaround = true
+    }
+    
+    struct Player {
+        static let assetDirectory = "art.scnassets/common/models/player/"
+        static let scale = SCNVector3Make(0.025, 0.025, 0.025)
     }
     
     struct Zombie {

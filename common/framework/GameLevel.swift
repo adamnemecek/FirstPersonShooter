@@ -16,6 +16,9 @@ protocol GameLevel : SCNSceneRendererDelegate, SCNPhysicsContactDelegate {
     
     func levelFailed()
     func levelCompleted()
+    
+    func controllerDirection() -> float2
+    
     #if os(OSX)
     func mouseDown(theEvent: NSEvent)
     func mouseUp(theEvent: NSEvent)

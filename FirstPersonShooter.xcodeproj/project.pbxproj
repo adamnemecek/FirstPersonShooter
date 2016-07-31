@@ -63,6 +63,18 @@
 		9589A9C91D4E46380084950D /* ZombieFleeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9C21D4E46380084950D /* ZombieFleeState.swift */; };
 		9589A9CA1D4E46380084950D /* ZombieIdleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9C31D4E46380084950D /* ZombieIdleState.swift */; };
 		9589A9CB1D4E46380084950D /* ZombieIdleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9C31D4E46380084950D /* ZombieIdleState.swift */; };
+		9589A9CD1D4E92E90084950D /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9CC1D4E92E90084950D /* PlayerEntity.swift */; };
+		9589A9CE1D4E92E90084950D /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9CC1D4E92E90084950D /* PlayerEntity.swift */; };
+		9589A9D31D4EA01F0084950D /* PlayerAttackState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9CF1D4EA01F0084950D /* PlayerAttackState.swift */; };
+		9589A9D41D4EA01F0084950D /* PlayerAttackState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9CF1D4EA01F0084950D /* PlayerAttackState.swift */; };
+		9589A9D51D4EA01F0084950D /* PlayerDeadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9D01D4EA01F0084950D /* PlayerDeadState.swift */; };
+		9589A9D61D4EA01F0084950D /* PlayerDeadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9D01D4EA01F0084950D /* PlayerDeadState.swift */; };
+		9589A9D71D4EA01F0084950D /* PlayerIdleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9D11D4EA01F0084950D /* PlayerIdleState.swift */; };
+		9589A9D81D4EA01F0084950D /* PlayerIdleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9D11D4EA01F0084950D /* PlayerIdleState.swift */; };
+		9589A9D91D4EA01F0084950D /* PlayerWalkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9D21D4EA01F0084950D /* PlayerWalkState.swift */; };
+		9589A9DA1D4EA01F0084950D /* PlayerWalkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9D21D4EA01F0084950D /* PlayerWalkState.swift */; };
+		9589A9DC1D4EA1790084950D /* PlayerControlComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9DB1D4EA1780084950D /* PlayerControlComponent.swift */; };
+		9589A9DD1D4EA1790084950D /* PlayerControlComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9DB1D4EA1780084950D /* PlayerControlComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +114,12 @@
 		9589A9C11D4E46380084950D /* ZombieDeadState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZombieDeadState.swift; path = common/game/states/ZombieDeadState.swift; sourceTree = "<group>"; };
 		9589A9C21D4E46380084950D /* ZombieFleeState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZombieFleeState.swift; path = common/game/states/ZombieFleeState.swift; sourceTree = "<group>"; };
 		9589A9C31D4E46380084950D /* ZombieIdleState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZombieIdleState.swift; path = common/game/states/ZombieIdleState.swift; sourceTree = "<group>"; };
+		9589A9CC1D4E92E90084950D /* PlayerEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerEntity.swift; path = common/game/entities/PlayerEntity.swift; sourceTree = "<group>"; };
+		9589A9CF1D4EA01F0084950D /* PlayerAttackState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerAttackState.swift; path = common/game/states/PlayerAttackState.swift; sourceTree = "<group>"; };
+		9589A9D01D4EA01F0084950D /* PlayerDeadState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerDeadState.swift; path = common/game/states/PlayerDeadState.swift; sourceTree = "<group>"; };
+		9589A9D11D4EA01F0084950D /* PlayerIdleState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerIdleState.swift; path = common/game/states/PlayerIdleState.swift; sourceTree = "<group>"; };
+		9589A9D21D4EA01F0084950D /* PlayerWalkState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerWalkState.swift; path = common/game/states/PlayerWalkState.swift; sourceTree = "<group>"; };
+		9589A9DB1D4EA1780084950D /* PlayerControlComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerControlComponent.swift; path = common/game/components/PlayerControlComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +233,7 @@
 		9589A9A81D4E39460084950D /* entities */ = {
 			isa = PBXGroup;
 			children = (
+				9589A9CC1D4E92E90084950D /* PlayerEntity.swift */,
 				9589A9BA1D4E44210084950D /* ZombieEntity.swift */,
 				9589A9AB1D4E39910084950D /* EntityManager.swift */,
 			);
@@ -224,6 +243,7 @@
 		9589A9A91D4E39500084950D /* components */ = {
 			isa = PBXGroup;
 			children = (
+				9589A9DB1D4EA1780084950D /* PlayerControlComponent.swift */,
 				9589A9BD1D4E45A90084950D /* HealthComponent.swift */,
 				9589A9AE1D4E3A300084950D /* MoveComponent.swift */,
 				9589A9B11D4E3A450084950D /* RenderComponent.swift */,
@@ -236,6 +256,10 @@
 		9589A9AA1D4E395B0084950D /* states */ = {
 			isa = PBXGroup;
 			children = (
+				9589A9CF1D4EA01F0084950D /* PlayerAttackState.swift */,
+				9589A9D01D4EA01F0084950D /* PlayerDeadState.swift */,
+				9589A9D11D4EA01F0084950D /* PlayerIdleState.swift */,
+				9589A9D21D4EA01F0084950D /* PlayerWalkState.swift */,
 				9589A9C01D4E46380084950D /* ZombieChaseState.swift */,
 				9589A9C11D4E46380084950D /* ZombieDeadState.swift */,
 				9589A9C21D4E46380084950D /* ZombieFleeState.swift */,
@@ -356,22 +380,28 @@
 				9589A9711D4B8C9C0084950D /* GameLevel.swift in Sources */,
 				9589A9AC1D4E39910084950D /* EntityManager.swift in Sources */,
 				9589A97A1D4B924D0084950D /* GameLevel2.swift in Sources */,
+				9589A9D91D4EA01F0084950D /* PlayerWalkState.swift in Sources */,
 				9589A9B21D4E3A450084950D /* RenderComponent.swift in Sources */,
 				9589A9651D4AB6130084950D /* GameSceneView.swift in Sources */,
 				9589A9B51D4E3A590084950D /* StateComponent.swift in Sources */,
 				9589A9C81D4E46380084950D /* ZombieFleeState.swift in Sources */,
 				9589A9C61D4E46380084950D /* ZombieDeadState.swift in Sources */,
 				9589A9AF1D4E3A300084950D /* MoveComponent.swift in Sources */,
+				9589A9D71D4EA01F0084950D /* PlayerIdleState.swift in Sources */,
 				9589A9341D4AB2FE0084950D /* AppDelegate.swift in Sources */,
 				9589A9BB1D4E44210084950D /* ZombieEntity.swift in Sources */,
+				9589A9CD1D4E92E90084950D /* PlayerEntity.swift in Sources */,
 				9589A9B81D4E3B540084950D /* MoveBehavior.swift in Sources */,
 				9589A97E1D4B954F0084950D /* GameLevelsMenu.swift in Sources */,
+				9589A9D51D4EA01F0084950D /* PlayerDeadState.swift in Sources */,
 				9589A9741D4B8E6E0084950D /* GameLevel0.swift in Sources */,
 				9589A96B1D4AE5180084950D /* GameScenesManager.swift in Sources */,
 				9589A9781D4B924D0084950D /* GameLevel1.swift in Sources */,
 				9589A96E1D4AE5510084950D /* GameConstants.swift in Sources */,
 				9589A9A31D4BFAA20084950D /* HUDNode.swift in Sources */,
 				9589A9BE1D4E45A90084950D /* HealthComponent.swift in Sources */,
+				9589A9DC1D4EA1790084950D /* PlayerControlComponent.swift in Sources */,
+				9589A9D31D4EA01F0084950D /* PlayerAttackState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +409,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9589A9CE1D4E92E90084950D /* PlayerEntity.swift in Sources */,
 				9589A96C1D4AE5180084950D /* GameScenesManager.swift in Sources */,
 				9589A9C71D4E46380084950D /* ZombieDeadState.swift in Sources */,
 				9589A9691D4AB7450084950D /* GameViewController.swift in Sources */,
@@ -392,17 +423,22 @@
 				9589A94D1D4AB3FF0084950D /* AppDelegate.swift in Sources */,
 				9589A9A41D4BFAA20084950D /* HUDNode.swift in Sources */,
 				9589A9AD1D4E39910084950D /* EntityManager.swift in Sources */,
+				9589A9DD1D4EA1790084950D /* PlayerControlComponent.swift in Sources */,
+				9589A9D61D4EA01F0084950D /* PlayerDeadState.swift in Sources */,
 				9589A9721D4B8C9C0084950D /* GameLevel.swift in Sources */,
 				9589A9B61D4E3A590084950D /* StateComponent.swift in Sources */,
 				9589A9BF1D4E45A90084950D /* HealthComponent.swift in Sources */,
 				9589A9791D4B924D0084950D /* GameLevel1.swift in Sources */,
 				9589A9B01D4E3A300084950D /* MoveComponent.swift in Sources */,
+				9589A9D81D4EA01F0084950D /* PlayerIdleState.swift in Sources */,
 				9589A9C51D4E46380084950D /* ZombieChaseState.swift in Sources */,
 				9589A9A71D4D513F0084950D /* GameCamera.swift in Sources */,
 				9589A97B1D4B924D0084950D /* GameLevel2.swift in Sources */,
+				9589A9D41D4EA01F0084950D /* PlayerAttackState.swift in Sources */,
 				9589A9CB1D4E46380084950D /* ZombieIdleState.swift in Sources */,
 				9589A9B91D4E3B540084950D /* MoveBehavior.swift in Sources */,
 				9589A96F1D4AE5510084950D /* GameConstants.swift in Sources */,
+				9589A9DA1D4EA01F0084950D /* PlayerWalkState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

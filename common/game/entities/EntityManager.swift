@@ -18,7 +18,9 @@ class EntityManager {
     lazy var componentSystems: [GKComponentSystem] = {
         let moveSystem = GKComponentSystem(componentClass: MoveComponent.self)
         let stateSystem = GKComponentSystem(componentClass: StateComponent.self)
-        return [moveSystem, stateSystem]
+        let playerControlSystem = GKComponentSystem(componentClass: PlayerControlComponent.self)
+
+        return [playerControlSystem, moveSystem, stateSystem]
     }()
     
     init(scene:SCNScene, navigationGraph:GKGraph) {
@@ -47,6 +49,28 @@ class EntityManager {
         toRemove.insert(entity)
     }
     
+    func createPlayer() {
+        let player = PlayerEntity(entityManager: self, name:"Player")
+        
+        let renderComponent = RenderComponent(node:player.node, scale:player.scale, rotation:player.rotation)
+        player.addComponent(renderComponent)
+        
+        let playerControlComponent = PlayerControlComponent(maxSpeed: 10.0, maxAcceleration: 1.0, radius: 10.0, entityManager: self)
+        player.addComponent(playerControlComponent)
+        
+        let stateComponent = StateComponent(entityManager:self, entity:player)
+        player.addComponent(stateComponent)
+        
+        let healthComponent = HealthComponent(alive:true, currentHealth:100.0, maximumHealth:100.0)
+        player.addComponent(healthComponent)
+        
+        if let renderComponent = player.componentForClass(RenderComponent.self) {
+            renderComponent.node.position = SCNVector3Make(-30.0, 0.0, -30.0)
+        }
+        add(player)
+    }
+
+    
     func createZombie() {
         let zombie = ZombieEntity(entityManager: self, name:"Zombie")
         
@@ -56,7 +80,7 @@ class EntityManager {
         let moveComponent = MoveComponent(maxSpeed: 10.0, maxAcceleration: 1.0, radius: 10.0, entityManager: self)
         zombie.addComponent(moveComponent)
         
-        let stateComponent = StateComponent(entityManager:self, enemy:zombie)
+        let stateComponent = StateComponent(entityManager:self, entity:zombie)
         zombie.addComponent(stateComponent)
         
         let healthComponent = HealthComponent(alive:true, currentHealth:100.0, maximumHealth:100.0)

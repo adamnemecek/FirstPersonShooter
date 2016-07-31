@@ -117,6 +117,10 @@ extension GameLevelsMenu {
     func levelCompleted() {
     }
     
+    func controllerDirection() -> float2 {
+        return float2(0.0, 0.0)
+    }
+    
     #if os(OSX)
     func mouseDown(theEvent: NSEvent) {
         // check what nodes are clicked

@@ -34,7 +34,7 @@ class ZombieChaseState : GKState {
                     self.stateMachine!.enterState(ZombieDeadState.self)
                     return
                 }
-                print("Zombie health is \(healthComponent.currentHealth)")
+                //print("Zombie health is \(healthComponent.currentHealth)")
             }
         }
         

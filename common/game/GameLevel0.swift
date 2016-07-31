@@ -76,6 +76,7 @@ class GameLevel0 : NSObject, GameLevel {
         let graph = GKGridGraph(fromGridStartingAt: (vector_int2)(0,0), width: 64, height: 64, diagonalsAllowed: false)
         entityManager = EntityManager(scene: self.scene!, navigationGraph:graph)
         entityManager!.createZombie()
+        entityManager!.createPlayer()
         return scn
     }
     
