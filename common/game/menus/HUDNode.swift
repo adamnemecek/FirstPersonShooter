@@ -149,9 +149,13 @@ class HUDNode : SKNode {
 
     }
     
+    func removeControls() {
+    
+    }
+    
     private func createHealthBar(position:CGPoint) -> ProgressView {
         let healthView = ProgressView()
-        healthView.frame = CGRect(x: position.x, y: position.y, width: 100, height: 25)
+        healthView.frame = CGRect(x: position.x, y: position.y, width: 80, height: 20)
         return healthView
     }
     

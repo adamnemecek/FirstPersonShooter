@@ -82,6 +82,7 @@
 		95FA86191D4FDA5B003FFAC5 /* LevelCompleteMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FA86151D4FD9F5003FFAC5 /* LevelCompleteMenu.swift */; };
 		95FA861A1D4FDA5B003FFAC5 /* LevelFailedMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FA86161D4FD9F5003FFAC5 /* LevelFailedMenu.swift */; };
 		95FA861E1D4FE04D003FFAC5 /* ZombieAttackState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FA861D1D4FE04D003FFAC5 /* ZombieAttackState.swift */; };
+		95FA861F1D501175003FFAC5 /* ZombieAttackState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FA861D1D4FE04D003FFAC5 /* ZombieAttackState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -428,6 +429,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95FA861F1D501175003FFAC5 /* ZombieAttackState.swift in Sources */,
 				95FA86191D4FDA5B003FFAC5 /* LevelCompleteMenu.swift in Sources */,
 				95FA861A1D4FDA5B003FFAC5 /* LevelFailedMenu.swift in Sources */,
 				95FA86141D4F94C5003FFAC5 /* PhysicsComponent.swift in Sources */,

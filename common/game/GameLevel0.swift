@@ -450,15 +450,18 @@ extension GameLevel0 {
     
     func stopLevel() {
         unregisterListeners()
+        hudNode?.removeControls()
     }
     
     func levelFailed() {
         unregisterListeners()
+        hudNode?.removeControls()
         GameScenesManager.sharedInstance.setGameState(.LevelFailed, levelIndex:0)
     }
     
     func levelCompleted() {
         unregisterListeners()
+        hudNode?.removeControls()
         GameScenesManager.sharedInstance.setGameState(.LevelComplete, levelIndex:0)
 
     }

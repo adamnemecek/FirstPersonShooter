@@ -144,7 +144,7 @@ extension LevelFailedMenu {
             return
         }
         if let touch = touches.first {
-            let p = touch.locationInView(view)
+            let p = touch.locationInNode(scnView!.overlaySKScene!)
             self.handleSelection(view, location:p)
         }
     }
