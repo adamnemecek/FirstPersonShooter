@@ -184,6 +184,44 @@ class GameLevel0 : NSObject, GameLevel {
         overlayScene.addChild(hudNode!)
     }
     
+    func registerListeners() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.playerDeadNotification), name: Constants.GameEvents.PLAYER_DEAD, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.healthLowNotification), name: Constants.GameEvents.HEALTH_LOW, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.successfulCompletion), name: Constants.GameEvents.LEVEL_COMPLETE, object: nil)
+    }
+    
+    func unregisterListeners() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.GameEvents.PLAYER_DEAD, object:nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.GameEvents.HEALTH_LOW, object:nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.GameEvents.LEVEL_COMPLETE, object:nil)
+        
+        
+    }
+    
+    func playerDeadNotification() {
+        print("Received player dead notification")
+        self.levelFailed()
+    }
+    
+    func healthLowNotification() {
+        print("Received health low notification")
+    }
+    
+    func successfulCompletion() {
+        self.levelCompleted()
+    }
+
+    private func setupSounds() {
+        let backgroundMusicSource = SCNAudioSource(named: "art.scnassets/sounds/background_music.m4a")
+        backgroundMusicSource!.volume = 0.2
+        let player = SCNAudioPlayer(source:backgroundMusicSource!)
+        backgroundMusicSource!.loops = true
+        backgroundMusicSource!.shouldStream = true
+        backgroundMusicSource!.positional = false
+        self.scene!.rootNode.addAudioPlayer(player)
+    }
+
+    
     private func panCamera(displacement:float2) {
         print("Displacement is \(displacement)")
         if(abs(displacement.x) > abs(displacement.y)) {
@@ -284,11 +322,13 @@ class GameLevel0 : NSObject, GameLevel {
     func keyDown(theEvent: NSEvent) {
         if(theEvent.keyCode == 36) {
             // Return Key
-            
+            /*
             self.hudNode?.setHealth(0.2)
             let val = SCNUtils.calculateAngleBetweenCameraAndNode(sceneCamera!, node:debugNode!)
             let radius = abs(sceneCamera!.position.z - debugNode!.position.z)
             sceneCamera!.turnCameraAroundNode(debugNode!, radius: radius, angleInDegrees: Float(val))
+            */
+            entityManager!.player!.missionAccomplished = true
             
             return
         }
@@ -401,18 +441,26 @@ class GameLevel0 : NSObject, GameLevel {
 //MARK: GameLevel protocol methods
 extension GameLevel0 {
     func startLevel() {
+        registerListeners()
+        setupSounds()
     }
     
     func pauseLevel() {
     }
     
     func stopLevel() {
+        unregisterListeners()
     }
     
     func levelFailed() {
+        unregisterListeners()
+        GameScenesManager.sharedInstance.setGameState(.LevelFailed, levelIndex:0)
     }
     
     func levelCompleted() {
+        unregisterListeners()
+        GameScenesManager.sharedInstance.setGameState(.LevelComplete, levelIndex:0)
+
     }
     
     

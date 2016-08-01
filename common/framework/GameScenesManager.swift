@@ -46,6 +46,7 @@ class GameScenesManager {
         guard let view = self.scnView else {
             fatalError("Scene View is not set")
         }
+        
         switch(gameState) {
         case .PreGame:
             currentLevel = initializeGameLevel("GameLevelsMenu")
@@ -79,11 +80,25 @@ class GameScenesManager {
             view.scene!.rootNode.hidden = true
             currentLevel!.stopLevel()
             view.stop(self)
+            
+            currentLevel = initializeGameLevel("LevelCompleteMenu")
+            let newScene = setupGameLevel(currentLevel!)
+            self.transitionScene(newScene)
+            view.scene!.rootNode.hidden = false
+            currentLevel!.startLevel()
+            view.play(self)
             break
         case .LevelFailed:
             view.scene!.rootNode.hidden = true
             currentLevel!.stopLevel()
             view.stop(self)
+            
+            currentLevel = initializeGameLevel("LevelFailedMenu")
+            let newScene = setupGameLevel(currentLevel!)
+            self.transitionScene(newScene)
+            view.scene!.rootNode.hidden = false
+            currentLevel!.startLevel()
+            view.play(self)
             break
         case .Paused:
             view.scene!.rootNode.hidden = false

@@ -59,10 +59,24 @@ enum KeyboardDirection : UInt16 {
 }
 
 struct Constants {
-    struct Configuration {
-        static let UseWorkaround = true
-    }
     
+    struct GameEvents {
+        static let HEALTH_LOW = "HealthLow"
+        static let HEALTH_CHANGED = "HealthChanged"
+        static let PLAYER_DEAD = "PlayerDead"
+        static let LEVEL_COMPLETE = "LevelComplete"
+        static let GAME_STARTED = "GameStarted"
+        static let ENEMY_DESTROYED = "EnemyDestroyed"
+        static let LEVEL_ENDED = "LevelEnded"
+        static let AMMO_COLLECTED = "AmmoCollected"
+        static let HEALTH_RESTORED = "HealthRestored"
+        static let RESPAWNED = "Respawned"
+        static let GAME_SAVED = "GameSaved"
+        static let GAME_LOADED = "GameLoaded"
+        static let CRITICAL_ERROR = "CriticalError"
+        static let POWERUP_ACQUIRED = "PowerUpAcquired"
+    }
+
     struct Player {
         static let assetDirectory = "art.scnassets/common/models/player/"
         static let scale = SCNVector3Make(0.025, 0.025, 0.025)

@@ -22,24 +22,7 @@ class PlayerWalkState : GKState {
         player.changeAnimationStateTo(PlayerAnimationState.Walk)
     }
     
-    override func updateWithDeltaTime(seconds: NSTimeInterval) {
-        let player = self.player as! PlayerEntity
-        
-        if let healthComponent = player.componentForClass(HealthComponent.self) {
-            healthComponent.currentHealth = healthComponent.currentHealth - 0.01
-            if healthComponent.alive == false {
-                print("Player is not alive")
-                self.stateMachine!.enterState(PlayerDeadState.self)
-                return
-            } else {
-                if(healthComponent.currentHealth <= 0.0) {
-                    self.stateMachine!.enterState(PlayerDeadState.self)
-                    return
-                }
-                //print("Player health is \(healthComponent.currentHealth)")
-            }
-        }
-        
+    override func updateWithDeltaTime(seconds: NSTimeInterval) {        
         let direction = GameScenesManager.sharedInstance.currentLevel!.controllerDirection()
 
         if(direction.x == 0.0 && direction.y == 0.0 ) {

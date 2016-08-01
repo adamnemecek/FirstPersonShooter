@@ -77,7 +77,7 @@ class MoveComponent : GKAgent2D, GKAgentDelegate {
             return
         }
         let distance = SCNUtils.distance(renderComponent.node, node2: playerRenderComponent.node)
-        print("Distance is \(distance)")
+        //print("Distance is \(distance)")
         if(distance < 1.0) {
             behavior!.removeAllGoals()
             return

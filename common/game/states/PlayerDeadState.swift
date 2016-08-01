@@ -20,6 +20,7 @@ class PlayerDeadState : GKState {
     override func didEnterWithPreviousState(previousState: GKState?) {
         let player = self.player as! PlayerEntity
         player.changeAnimationStateTo(PlayerAnimationState.Die)
+        NSNotificationCenter.defaultCenter().postNotificationName(Constants.GameEvents.PLAYER_DEAD, object: nil)
     }
 
     override func updateWithDeltaTime(seconds: NSTimeInterval) {

@@ -77,6 +77,11 @@
 		9589A9DD1D4EA1790084950D /* PlayerControlComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9DB1D4EA1780084950D /* PlayerControlComponent.swift */; };
 		95FA86131D4F932E003FFAC5 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FA86121D4F932E003FFAC5 /* PhysicsComponent.swift */; };
 		95FA86141D4F94C5003FFAC5 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FA86121D4F932E003FFAC5 /* PhysicsComponent.swift */; };
+		95FA86171D4FD9F5003FFAC5 /* LevelCompleteMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FA86151D4FD9F5003FFAC5 /* LevelCompleteMenu.swift */; };
+		95FA86181D4FD9F5003FFAC5 /* LevelFailedMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FA86161D4FD9F5003FFAC5 /* LevelFailedMenu.swift */; };
+		95FA86191D4FDA5B003FFAC5 /* LevelCompleteMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FA86151D4FD9F5003FFAC5 /* LevelCompleteMenu.swift */; };
+		95FA861A1D4FDA5B003FFAC5 /* LevelFailedMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FA86161D4FD9F5003FFAC5 /* LevelFailedMenu.swift */; };
+		95FA861E1D4FE04D003FFAC5 /* ZombieAttackState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FA861D1D4FE04D003FFAC5 /* ZombieAttackState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -123,6 +128,9 @@
 		9589A9D21D4EA01F0084950D /* PlayerWalkState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerWalkState.swift; path = common/game/states/PlayerWalkState.swift; sourceTree = "<group>"; };
 		9589A9DB1D4EA1780084950D /* PlayerControlComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerControlComponent.swift; path = common/game/components/PlayerControlComponent.swift; sourceTree = "<group>"; };
 		95FA86121D4F932E003FFAC5 /* PhysicsComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhysicsComponent.swift; path = common/game/components/PhysicsComponent.swift; sourceTree = "<group>"; };
+		95FA86151D4FD9F5003FFAC5 /* LevelCompleteMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LevelCompleteMenu.swift; path = common/game/menus/LevelCompleteMenu.swift; sourceTree = "<group>"; };
+		95FA86161D4FD9F5003FFAC5 /* LevelFailedMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LevelFailedMenu.swift; path = common/game/menus/LevelFailedMenu.swift; sourceTree = "<group>"; };
+		95FA861D1D4FE04D003FFAC5 /* ZombieAttackState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZombieAttackState.swift; path = common/game/states/ZombieAttackState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +235,8 @@
 		9589A97C1D4B95340084950D /* menus */ = {
 			isa = PBXGroup;
 			children = (
+				95FA86151D4FD9F5003FFAC5 /* LevelCompleteMenu.swift */,
+				95FA86161D4FD9F5003FFAC5 /* LevelFailedMenu.swift */,
 				9589A97D1D4B954F0084950D /* GameLevelsMenu.swift */,
 				9589A9A21D4BFAA20084950D /* HUDNode.swift */,
 			);
@@ -248,9 +258,9 @@
 			children = (
 				9589A9DB1D4EA1780084950D /* PlayerControlComponent.swift */,
 				9589A9BD1D4E45A90084950D /* HealthComponent.swift */,
-				9589A9AE1D4E3A300084950D /* MoveComponent.swift */,
 				9589A9B11D4E3A450084950D /* RenderComponent.swift */,
 				9589A9B41D4E3A590084950D /* StateComponent.swift */,
+				9589A9AE1D4E3A300084950D /* MoveComponent.swift */,
 				9589A9B71D4E3B540084950D /* MoveBehavior.swift */,
 				95FA86121D4F932E003FFAC5 /* PhysicsComponent.swift */,
 			);
@@ -268,6 +278,7 @@
 				9589A9C11D4E46380084950D /* ZombieDeadState.swift */,
 				9589A9C21D4E46380084950D /* ZombieFleeState.swift */,
 				9589A9C31D4E46380084950D /* ZombieIdleState.swift */,
+				95FA861D1D4FE04D003FFAC5 /* ZombieAttackState.swift */,
 			);
 			name = states;
 			sourceTree = "<group>";
@@ -393,6 +404,7 @@
 				9589A9C61D4E46380084950D /* ZombieDeadState.swift in Sources */,
 				9589A9AF1D4E3A300084950D /* MoveComponent.swift in Sources */,
 				9589A9D71D4EA01F0084950D /* PlayerIdleState.swift in Sources */,
+				95FA86171D4FD9F5003FFAC5 /* LevelCompleteMenu.swift in Sources */,
 				9589A9341D4AB2FE0084950D /* AppDelegate.swift in Sources */,
 				9589A9BB1D4E44210084950D /* ZombieEntity.swift in Sources */,
 				9589A9CD1D4E92E90084950D /* PlayerEntity.swift in Sources */,
@@ -400,8 +412,10 @@
 				9589A97E1D4B954F0084950D /* GameLevelsMenu.swift in Sources */,
 				9589A9D51D4EA01F0084950D /* PlayerDeadState.swift in Sources */,
 				9589A9741D4B8E6E0084950D /* GameLevel0.swift in Sources */,
+				95FA86181D4FD9F5003FFAC5 /* LevelFailedMenu.swift in Sources */,
 				9589A96B1D4AE5180084950D /* GameScenesManager.swift in Sources */,
 				9589A9781D4B924D0084950D /* GameLevel1.swift in Sources */,
+				95FA861E1D4FE04D003FFAC5 /* ZombieAttackState.swift in Sources */,
 				9589A96E1D4AE5510084950D /* GameConstants.swift in Sources */,
 				9589A9A31D4BFAA20084950D /* HUDNode.swift in Sources */,
 				9589A9BE1D4E45A90084950D /* HealthComponent.swift in Sources */,
@@ -414,6 +428,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95FA86191D4FDA5B003FFAC5 /* LevelCompleteMenu.swift in Sources */,
+				95FA861A1D4FDA5B003FFAC5 /* LevelFailedMenu.swift in Sources */,
 				95FA86141D4F94C5003FFAC5 /* PhysicsComponent.swift in Sources */,
 				9589A9CE1D4E92E90084950D /* PlayerEntity.swift in Sources */,
 				9589A96C1D4AE5180084950D /* GameScenesManager.swift in Sources */,

@@ -18,6 +18,7 @@ enum PlayerAnimationState : Int {
 }
 
 class PlayerEntity : GKEntity {
+    var missionAccomplished:Bool = false
     let contactTestBitMask = ColliderType.Enemy.rawValue | ColliderType.LeftWall.rawValue | ColliderType.RightWall.rawValue | ColliderType.BackWall.rawValue | ColliderType.FrontWall.rawValue | ColliderType.Door.rawValue | ColliderType.Ground.rawValue | ColliderType.PowerUp.rawValue
     
     // Put ourself into the player category so other objects can limit their scope of collision checks.
@@ -66,7 +67,6 @@ class PlayerEntity : GKEntity {
         filename = Constants.Player.assetDirectory + "dying.dae"
         (n, _) = utils.loadSceneFile(filename)
         self.dyingNode = n
-
     }
 
     func changeAnimationStateTo(newState:PlayerAnimationState) {
@@ -103,6 +103,12 @@ class PlayerEntity : GKEntity {
         
         if let physicsBody = self.componentForClass(PhysicsComponent.self) {
             node.addChildNode(physicsBody.node!)
+        }
+    }
+    
+    func receiveHit() {
+        if let health = self.componentForClass(HealthComponent.self) {
+            health.currentHealth = health.currentHealth - 10
         }
     }
     

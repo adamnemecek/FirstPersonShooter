@@ -20,9 +20,10 @@ class StateComponent: GKComponent {
             let idle = ZombieIdleState(entityManager:entityManager, enemy:entity)
             let chase = ZombieChaseState(entityManager:entityManager, enemy:entity)
             let flee = ZombieFleeState(entityManager:entityManager, enemy:entity)
+            let attack = ZombieAttackState(entityManager:entityManager, enemy:entity)
             let dead = ZombieDeadState(entityManager:entityManager, enemy:entity)
             
-            stateMachine = GKStateMachine(states:[idle, chase, flee, dead])
+            stateMachine = GKStateMachine(states:[idle, chase, flee, attack, dead])
             stateMachine!.enterState(ZombieChaseState.self)
 
         }
@@ -44,6 +45,39 @@ class StateComponent: GKComponent {
     }
     
     override func updateWithDeltaTime(seconds: NSTimeInterval) {
+        if let player = entity as? PlayerEntity {
+            if let healthComponent = player.componentForClass(HealthComponent.self) {
+                if healthComponent.alive == false {
+                    print("Player is not alive")
+                    self.stateMachine!.enterState(PlayerDeadState.self)
+                    return
+                } else {
+                    print("CURRENT HEALTH:\(healthComponent.currentHealth)")
+                    if(healthComponent.currentHealth <= 0.0) {
+                        self.stateMachine!.enterState(PlayerDeadState.self)
+                        return
+                    }
+                    //print("Player health is \(healthComponent.currentHealth)")
+                }
+            }
+            if(player.missionAccomplished) {
+                NSNotificationCenter.defaultCenter().postNotificationName(Constants.GameEvents.LEVEL_COMPLETE, object: nil)
+            }
+        } else if let zombie = entity as? ZombieEntity {
+            if let healthComponent = zombie.componentForClass(HealthComponent.self) {
+                if healthComponent.alive == false {
+                    self.stateMachine!.enterState(ZombieDeadState.self)
+                    return
+                } else {
+                    if(healthComponent.currentHealth <= 0.0) {
+                        self.stateMachine!.enterState(ZombieDeadState.self)
+                        return
+                    }
+                }
+            }
+
+        }
+
         stateMachine?.updateWithDeltaTime(seconds)
     }
 }
