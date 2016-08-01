@@ -18,6 +18,12 @@ enum ZombieAnimationState : Int {
 }
 
 class ZombieEntity : GKEntity {
+    let contactTestBitMask =
+    ColliderType.FrontWall.rawValue | ColliderType.LeftWall.rawValue | ColliderType.RightWall.rawValue | ColliderType.BackWall.rawValue | ColliderType.Player.rawValue | ColliderType.Door.rawValue | ColliderType.Ground.rawValue | ColliderType.Bullet.rawValue
+    
+    // Put ourself into the player category so other objects can limit their scope of collision checks.
+    let categoryBitMask = ColliderType.Enemy.rawValue;
+
     var idleNode:SCNNode!
     var walkNode:SCNNode!
     var dyingNode:SCNNode!
@@ -94,6 +100,10 @@ class ZombieEntity : GKEntity {
         renderComponent.node.position = lastPosition
         self.addComponent(renderComponent)
         entityManager.scene.rootNode.addChildNode(node)
+        
+        if let physicsBody = self.componentForClass(PhysicsComponent.self) {
+            node.addChildNode(physicsBody.node)
+        }
     }
     
 }

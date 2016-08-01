@@ -60,6 +60,7 @@ class MoveComponent : GKAgent2D, GKAgentDelegate {
         let z = SCNFloat(position.y)
         
         renderComponent.node.position = SCNVector3Make(x, 0, z)
+        renderComponent.node.eulerAngles = SCNVector3Make(SCNFloat(M_PI_2), SCNFloat(rotation), 0.0)
     }
     
     override func updateWithDeltaTime(seconds: NSTimeInterval) {

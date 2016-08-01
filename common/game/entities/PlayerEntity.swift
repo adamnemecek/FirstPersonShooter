@@ -18,13 +18,18 @@ enum PlayerAnimationState : Int {
 }
 
 class PlayerEntity : GKEntity {
+    let contactTestBitMask = ColliderType.Enemy.rawValue | ColliderType.LeftWall.rawValue | ColliderType.RightWall.rawValue | ColliderType.BackWall.rawValue | ColliderType.FrontWall.rawValue | ColliderType.Door.rawValue | ColliderType.Ground.rawValue | ColliderType.PowerUp.rawValue
+    
+    // Put ourself into the player category so other objects can limit their scope of collision checks.
+    let categoryBitMask = ColliderType.Player.rawValue
+
     var idleNode:SCNNode!
     var walkNode:SCNNode!
     var dyingNode:SCNNode!
     var attackNode:SCNNode!
     var kickNode:SCNNode!
     let scale = Constants.Player.scale
-    let rotation = SCNVector4Make(1, 0, 0, SCNFloat(M_PI/2))
+    var rotation = SCNVector4Make(1, 0, 0, SCNFloat(M_PI/2))
     
     var utils = SCNUtils()
     let entityManager:EntityManager
@@ -66,6 +71,7 @@ class PlayerEntity : GKEntity {
 
     func changeAnimationStateTo(newState:PlayerAnimationState) {
         let lastPosition = node.position
+        rotation = node.rotation
         let currentNode = node
         switch(newState) {
         case .Idle:
@@ -94,6 +100,10 @@ class PlayerEntity : GKEntity {
         renderComponent.node.position = lastPosition
         self.addComponent(renderComponent)
         entityManager.scene.rootNode.addChildNode(node)
+        
+        if let physicsBody = self.componentForClass(PhysicsComponent.self) {
+            node.addChildNode(physicsBody.node!)
+        }
     }
     
 }

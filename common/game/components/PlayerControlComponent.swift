@@ -47,6 +47,7 @@ class PlayerControlComponent : GKAgent2D, GKAgentDelegate {
         super.updateWithDeltaTime(seconds)
         
         if let renderComponent = entity?.componentForClass(RenderComponent.self) {
+                        
             let direction = GameScenesManager.sharedInstance.currentLevel!.controllerDirection()
             let speed = 1.0
         
@@ -62,12 +63,11 @@ class PlayerControlComponent : GKAgent2D, GKAgentDelegate {
             let angleDirection = SCNUtils.getAngleFromDirection(renderComponent.node.position, target:newPlayerPos)
         
             //animation snippet
-            if(angleDirection != 0) {
-                SCNTransaction.begin()
-                SCNTransaction.setAnimationDuration(0.1)
-                renderComponent.node.eulerAngles = SCNVector3Make(SCNFloat(M_PI/2), SCNFloat(angleDirection), 0)
-                SCNTransaction.commit()
-            }
+            
+            SCNTransaction.begin()
+            SCNTransaction.setAnimationDuration(0.1)
+            renderComponent.node.eulerAngles = SCNVector3Make(SCNFloat(M_PI/2), SCNFloat(angleDirection), 0)
+            SCNTransaction.commit()
         
             renderComponent.node.position = newPlayerPos
         }

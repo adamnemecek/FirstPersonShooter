@@ -55,6 +55,9 @@ class EntityManager {
         let renderComponent = RenderComponent(node:player.node, scale:player.scale, rotation:player.rotation)
         player.addComponent(renderComponent)
         
+        let physicsComponent = PhysicsComponent(entityManager:self, entity:player)
+        player.addComponent(physicsComponent)
+        
         let playerControlComponent = PlayerControlComponent(maxSpeed: 10.0, maxAcceleration: 1.0, radius: 10.0, entityManager: self)
         player.addComponent(playerControlComponent)
         
@@ -77,6 +80,9 @@ class EntityManager {
         let renderComponent = RenderComponent(node:zombie.node, scale:zombie.scale, rotation:zombie.rotation)
         zombie.addComponent(renderComponent)
         
+        let physicsComponent = PhysicsComponent(entityManager:self, entity:zombie)
+        zombie.addComponent(physicsComponent)
+
         let moveComponent = MoveComponent(maxSpeed: 10.0, maxAcceleration: 1.0, radius: 10.0, entityManager: self)
         zombie.addComponent(moveComponent)
         

@@ -90,7 +90,7 @@ class GameSceneView : SCNView {
         // Assign the SpriteKit overlay to the SceneKit view.
         overlaySKScene = skScene
         
-        //self.debugOptions = SCNDebugOptions.ShowPhysicsShapes
+        self.debugOptions = SCNDebugOptions.ShowPhysicsShapes
     }
     
 }

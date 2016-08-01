@@ -75,6 +75,8 @@
 		9589A9DA1D4EA01F0084950D /* PlayerWalkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9D21D4EA01F0084950D /* PlayerWalkState.swift */; };
 		9589A9DC1D4EA1790084950D /* PlayerControlComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9DB1D4EA1780084950D /* PlayerControlComponent.swift */; };
 		9589A9DD1D4EA1790084950D /* PlayerControlComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9DB1D4EA1780084950D /* PlayerControlComponent.swift */; };
+		95FA86131D4F932E003FFAC5 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FA86121D4F932E003FFAC5 /* PhysicsComponent.swift */; };
+		95FA86141D4F94C5003FFAC5 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FA86121D4F932E003FFAC5 /* PhysicsComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +122,7 @@
 		9589A9D11D4EA01F0084950D /* PlayerIdleState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerIdleState.swift; path = common/game/states/PlayerIdleState.swift; sourceTree = "<group>"; };
 		9589A9D21D4EA01F0084950D /* PlayerWalkState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerWalkState.swift; path = common/game/states/PlayerWalkState.swift; sourceTree = "<group>"; };
 		9589A9DB1D4EA1780084950D /* PlayerControlComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerControlComponent.swift; path = common/game/components/PlayerControlComponent.swift; sourceTree = "<group>"; };
+		95FA86121D4F932E003FFAC5 /* PhysicsComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhysicsComponent.swift; path = common/game/components/PhysicsComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +252,7 @@
 				9589A9B11D4E3A450084950D /* RenderComponent.swift */,
 				9589A9B41D4E3A590084950D /* StateComponent.swift */,
 				9589A9B71D4E3B540084950D /* MoveBehavior.swift */,
+				95FA86121D4F932E003FFAC5 /* PhysicsComponent.swift */,
 			);
 			name = components;
 			sourceTree = "<group>";
@@ -378,6 +382,7 @@
 				9589A9361D4AB2FE0084950D /* GameView.swift in Sources */,
 				9589A9A01D4BD0820084950D /* SCNUtils.swift in Sources */,
 				9589A9711D4B8C9C0084950D /* GameLevel.swift in Sources */,
+				95FA86131D4F932E003FFAC5 /* PhysicsComponent.swift in Sources */,
 				9589A9AC1D4E39910084950D /* EntityManager.swift in Sources */,
 				9589A97A1D4B924D0084950D /* GameLevel2.swift in Sources */,
 				9589A9D91D4EA01F0084950D /* PlayerWalkState.swift in Sources */,
@@ -409,6 +414,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95FA86141D4F94C5003FFAC5 /* PhysicsComponent.swift in Sources */,
 				9589A9CE1D4E92E90084950D /* PlayerEntity.swift in Sources */,
 				9589A96C1D4AE5180084950D /* GameScenesManager.swift in Sources */,
 				9589A9C71D4E46380084950D /* ZombieDeadState.swift in Sources */,

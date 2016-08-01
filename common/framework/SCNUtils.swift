@@ -84,6 +84,7 @@ class SCNUtils {
         let delZ = target.z - currentPosition.z;
         let angleInRadians =  atan2(delX, delZ);
         
+        //print("ANGLE IN radians is \(angleInRadians)")
         return Float(angleInRadians)
     }
     
