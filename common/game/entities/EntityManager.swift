@@ -10,6 +10,7 @@ import SceneKit
 import GameplayKit
 
 class EntityManager {
+    var player:PlayerEntity?
     let scene:SCNScene
     var navigationGraph:GKGraph
     var entities = Set<GKEntity>()
@@ -50,27 +51,27 @@ class EntityManager {
     }
     
     func createPlayer() {
-        let player = PlayerEntity(entityManager: self, name:"Player")
+        player = PlayerEntity(entityManager: self, name:"Player")
         
-        let renderComponent = RenderComponent(node:player.node, scale:player.scale, rotation:player.rotation)
-        player.addComponent(renderComponent)
+        let renderComponent = RenderComponent(node:player!.node, scale:player!.scale, rotation:player!.rotation)
+        player!.addComponent(renderComponent)
         
-        let physicsComponent = PhysicsComponent(entityManager:self, entity:player)
-        player.addComponent(physicsComponent)
+        let physicsComponent = PhysicsComponent(entityManager:self, entity:player!)
+        player!.addComponent(physicsComponent)
         
         let playerControlComponent = PlayerControlComponent(maxSpeed: 10.0, maxAcceleration: 1.0, radius: 10.0, entityManager: self)
-        player.addComponent(playerControlComponent)
+        player!.addComponent(playerControlComponent)
         
-        let stateComponent = StateComponent(entityManager:self, entity:player)
-        player.addComponent(stateComponent)
+        let stateComponent = StateComponent(entityManager:self, entity:player!)
+        player!.addComponent(stateComponent)
         
         let healthComponent = HealthComponent(alive:true, currentHealth:100.0, maximumHealth:100.0)
-        player.addComponent(healthComponent)
+        player!.addComponent(healthComponent)
         
-        if let renderComponent = player.componentForClass(RenderComponent.self) {
+        if let renderComponent = player!.componentForClass(RenderComponent.self) {
             renderComponent.node.position = SCNVector3Make(-30.0, 0.0, -30.0)
         }
-        add(player)
+        add(player!)
     }
 
     

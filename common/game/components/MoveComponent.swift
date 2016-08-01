@@ -65,9 +65,25 @@ class MoveComponent : GKAgent2D, GKAgentDelegate {
     
     override func updateWithDeltaTime(seconds: NSTimeInterval) {
         super.updateWithDeltaTime(seconds)
-        behavior = MoveBehavior(targetSpeed: maxSpeed, seek: self, avoid: [], path:path)
+        
+        guard let playerComponent = entityManager.player!.componentForClass(PlayerControlComponent.self) else {
+            print("No player agent found")
+            return
+        }
+        guard let renderComponent = entity?.componentForClass(RenderComponent.self) else {
+            return
+        }
+        guard let playerRenderComponent = entityManager.player?.componentForClass(RenderComponent.self) else {
+            return
+        }
+        let distance = SCNUtils.distance(renderComponent.node, node2: playerRenderComponent.node)
+        print("Distance is \(distance)")
+        if(distance < 1.0) {
+            behavior!.removeAllGoals()
+            return
+        }
+        behavior = MoveBehavior(targetSpeed: maxSpeed, seek: playerComponent, avoid: [], path:path)
     }
-
 }
 
 

@@ -66,7 +66,10 @@ class SCNUtils {
         return angleInDegrees
     }
 
-
+    static func distance(node1:SCNNode, node2:SCNNode) -> CGFloat {
+        return sqrt((node1.position.x - node2.position.x)*(node1.position.x - node2.position.x) + (node1.position.z - node2.position.z)*(node1.position.z - node2.position.z))
+    }
+    
     class func getBoundingBox(node:SCNNode) -> SCNBox {
         
         var min:SCNVector3 = SCNVector3(x: 0, y: 0, z: 0)

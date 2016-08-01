@@ -102,7 +102,7 @@ class ZombieEntity : GKEntity {
         entityManager.scene.rootNode.addChildNode(node)
         
         if let physicsBody = self.componentForClass(PhysicsComponent.self) {
-            node.addChildNode(physicsBody.node)
+            node.addChildNode(physicsBody.node!)
         }
     }
     
