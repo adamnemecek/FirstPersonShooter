@@ -16,6 +16,19 @@ class SCNUtils {
     static func radians2Degrees(radians:Double) -> Double {
         return (180.0 * radians) / M_PI
     }
+    
+    class func labelWithText(text:String, textSize:CGFloat, fontColor:SKColor)->SKLabelNode {
+        let fontName:String = "Optima-ExtraBlack"
+        let myLabel:SKLabelNode = SKLabelNode(fontNamed: fontName)
+        
+        myLabel.name = text
+        myLabel.text = text
+        myLabel.fontSize = textSize;
+        myLabel.fontColor = fontColor
+        
+        return myLabel;
+    }
+
 
     func loadSceneFile(filename:String) -> (SCNNode, SCNNode) {
         let escene = SCNScene(named:filename)

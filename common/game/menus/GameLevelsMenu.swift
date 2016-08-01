@@ -58,9 +58,10 @@ class GameLevelsMenu : NSObject, GameLevel {
         ambientLightNode.light!.color = SKColor.grayColor()
         scn.rootNode.addChildNode(ambientLightNode)
 
-        self.addMenuBlock(node, labelName:levelName1, position:SCNVector3Make(0.0, 20.0, 0.0))
-        self.addMenuBlock(node, labelName:levelName2, position:SCNVector3Make(0.0, 0.0, 0.0))
-        self.addMenuBlock(node, labelName:levelName3, position:SCNVector3Make(0.0, -20.0, 0.0))
+        let size = self.scnView!.frame.size
+        self.addMenuBlock(node, labelName:levelName1, position:CGPointMake(size.width/2, size.height/2 + 80))
+        self.addMenuBlock(node, labelName:levelName2, position:CGPointMake(size.width/2, size.height/2))
+        self.addMenuBlock(node, labelName:levelName3, position:CGPointMake(size.width/2, size.height/2 - 80))
 
         scn.rootNode.addChildNode(node)
         node.position = SCNVector3Make(0.0, 0.0, 0.0)
@@ -80,7 +81,8 @@ class GameLevelsMenu : NSObject, GameLevel {
         return scn
     }
     
-    private func addMenuBlock(node:SCNNode, labelName:String, position:SCNVector3) {
+    private func addMenuBlock(node:SCNNode, labelName:String, position:CGPoint) {
+        /*
         let text = SCNText(string:labelName, extrusionDepth: 0.5)
         text.firstMaterial!.diffuse.contents = SKColor.blueColor()
         let textNode = SCNNode(geometry: text)
@@ -88,6 +90,10 @@ class GameLevelsMenu : NSObject, GameLevel {
         textNode.position = position
         textNode.scale = SCNVector3Make(0.4, 0.4, 0.4)
         node.addChildNode(textNode)
+        */
+        let myLabel1 = SCNUtils.labelWithText(labelName, textSize: 40, fontColor:SKColor.yellowColor())
+        myLabel1.position = position
+        self.scnView!.overlaySKScene!.addChild(myLabel1)
     }
     
     func renderer(renderer: SCNSceneRenderer, updateAtTime time: NSTimeInterval) {
@@ -161,44 +167,15 @@ extension GameLevelsMenu {
     #endif
     
     private func handleSelection(view:SCNView, location:CGPoint) {
-        let hitResults = view.hitTest(location, options: nil)
-        // check that we clicked on at least one object
-        if hitResults.count > 0 {
-            // retrieved the first clicked object
-            let result: AnyObject = hitResults[0]
-            
-            // get its material
-            let material = result.node!.geometry!.firstMaterial!
-            
-            // highlight it
-            SCNTransaction.begin()
-            SCNTransaction.setAnimationDuration(0.1)
-            
-            // on completion - unhighlight
-            SCNTransaction.setCompletionBlock() {
-                SCNTransaction.begin()
-                SCNTransaction.setAnimationDuration(0.1)
-                
-                material.emission.contents = SKColor.blackColor()
-                
-                SCNTransaction.commit()
-                print(result.node!.name)
-                if (result.node!.name == self.levelName1) {
-                    GameScenesManager.sharedInstance.setGameState(.InGame, levelIndex:0)
-                } else if(result.node!.name == self.levelName2) {
-                    GameScenesManager.sharedInstance.setGameState(.InGame, levelIndex:1)
-                } else if(result.node!.name == self.levelName3) {
-                    GameScenesManager.sharedInstance.setGameState(.InGame, levelIndex:2)
-                }
-                else {
-                    print("Unknown node hit")
-                }
-                
-            }
-            
-            material.emission.contents = SKColor.redColor()
-            
-            SCNTransaction.commit()
+        let node:SKNode = (scnView?.overlaySKScene!.nodeAtPoint(location))!
+        print("NODE NAME IS \(node.name)")
+
+        if (node.name == self.levelName1) {
+            GameScenesManager.sharedInstance.setGameState(.InGame, levelIndex:0)
+        } else if(node.name == self.levelName2) {
+            GameScenesManager.sharedInstance.setGameState(.InGame, levelIndex:1)
+        } else if(node.name == self.levelName3) {
+            GameScenesManager.sharedInstance.setGameState(.InGame, levelIndex:2)
         }
 
     }

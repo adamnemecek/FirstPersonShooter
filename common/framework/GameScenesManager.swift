@@ -47,6 +47,11 @@ class GameScenesManager {
             fatalError("Scene View is not set")
         }
         
+        let overlay = view.overlaySKScene!
+        for child in overlay.children {
+            child.removeFromParent()
+        }
+        
         switch(gameState) {
         case .PreGame:
             currentLevel = initializeGameLevel("GameLevelsMenu")
@@ -135,7 +140,7 @@ class GameScenesManager {
     }
 
     private func transitionScene(scene:SCNScene) {
-        let sceneTransition = SKTransition.moveInWithDirection(.Right, duration: 1.5)
+        let sceneTransition = SKTransition.moveInWithDirection(.Right, duration: 1.0)
         guard let view = scnView else {
             fatalError("Scene View is not set")
         }

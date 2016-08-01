@@ -58,9 +58,10 @@ class LevelCompleteMenu : NSObject, GameLevel {
         ambientLightNode.light!.color = SKColor.grayColor()
         scn.rootNode.addChildNode(ambientLightNode)
 
-        self.addMenuBlock(node, labelName:labelName, position:SCNVector3Make(0.0, 20.0, 0.0))
-        self.addMenuBlock(node, labelName:replayLabelName, position:SCNVector3Make(0.0, 0.0, 0.0))
-        self.addMenuBlock(node, labelName:mainMenuLabelName, position:SCNVector3Make(0.0, -20.0, 0.0))
+        let size = self.scnView!.frame.size
+        self.addMenuBlock(node, labelName:labelName, textSize:40, position:CGPointMake(size.width/2, size.height/2 + 40))
+        self.addMenuBlock(node, labelName:replayLabelName, textSize:20, position:CGPointMake(size.width/2, size.height/2))
+        self.addMenuBlock(node, labelName:mainMenuLabelName, textSize:20, position:CGPointMake(size.width/2, size.height/2 - 40))
 
         scn.rootNode.addChildNode(node)
         node.position = SCNVector3Make(0.0, 0.0, 0.0)
@@ -80,14 +81,10 @@ class LevelCompleteMenu : NSObject, GameLevel {
         return scn
     }
     
-    private func addMenuBlock(node:SCNNode, labelName:String, position:SCNVector3) {
-        let text = SCNText(string:labelName, extrusionDepth: 0.5)
-        text.firstMaterial!.diffuse.contents = SKColor.blueColor()
-        let textNode = SCNNode(geometry: text)
-        textNode.name = labelName
-        textNode.position = position
-        textNode.scale = SCNVector3Make(0.4, 0.4, 0.4)
-        node.addChildNode(textNode)
+    private func addMenuBlock(node:SCNNode, labelName:String, textSize:CGFloat, position:CGPoint) {
+        let myLabel1 = SCNUtils.labelWithText(labelName, textSize: textSize, fontColor:SKColor.yellowColor())
+        myLabel1.position = position
+        self.scnView!.overlaySKScene!.addChild(myLabel1)
     }
     
     func renderer(renderer: SCNSceneRenderer, updateAtTime time: NSTimeInterval) {
@@ -161,44 +158,16 @@ extension LevelCompleteMenu {
     #endif
     
     private func handleSelection(view:SCNView, location:CGPoint) {
-        let hitResults = view.hitTest(location, options: nil)
-        // check that we clicked on at least one object
-        if hitResults.count > 0 {
-            // retrieved the first clicked object
-            let result: AnyObject = hitResults[0]
-            
-            // get its material
-            let material = result.node!.geometry!.firstMaterial!
-            
-            // highlight it
-            SCNTransaction.begin()
-            SCNTransaction.setAnimationDuration(0.1)
-            
-            // on completion - unhighlight
-            SCNTransaction.setCompletionBlock() {
-                SCNTransaction.begin()
-                SCNTransaction.setAnimationDuration(0.1)
-                
-                material.emission.contents = SKColor.blackColor()
-                
-                SCNTransaction.commit()
-                print(result.node!.name)
-				let levelIndex = GameScenesManager.sharedInstance.currentLevelIndex
-                if (result.node!.name == self.replayLabelName) {
-                    GameScenesManager.sharedInstance.setGameState(.InGame, levelIndex:levelIndex+1)
-                } else if(result.node!.name == self.mainMenuLabelName) {
-                    GameScenesManager.sharedInstance.setGameState(.PreGame, levelIndex:levelIndex)
-                } else {
-                    print("Unknown node hit")
-                }
-                
-            }
-            
-            material.emission.contents = SKColor.redColor()
-            
-            SCNTransaction.commit()
+        let node:SKNode = (scnView?.overlaySKScene!.nodeAtPoint(location))!
+        
+        let levelIndex = GameScenesManager.sharedInstance.currentLevelIndex
+        if (node.name == self.replayLabelName) {
+            GameScenesManager.sharedInstance.setGameState(.InGame, levelIndex:levelIndex+1)
+        } else if(node.name == self.mainMenuLabelName) {
+            GameScenesManager.sharedInstance.setGameState(.PreGame, levelIndex:levelIndex)
+        } else {
+            print("Unknown node hit")
         }
-
     }
 
 }
