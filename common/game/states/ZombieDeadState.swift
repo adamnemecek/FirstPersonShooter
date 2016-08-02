@@ -23,7 +23,6 @@ class ZombieDeadState : GKState {
     }
 
     override func updateWithDeltaTime(seconds: NSTimeInterval) {
-        print("In dead state update")
         self.entityManager.remove(enemy)
     }
 }

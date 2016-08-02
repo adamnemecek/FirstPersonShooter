@@ -24,7 +24,6 @@ class ZombieIdleState : GKState {
     }
     
     override func updateWithDeltaTime(seconds: NSTimeInterval) {
-        //print("In idle state update")                
         self.stateMachine!.enterState(ZombieChaseState.self)
     }
 }

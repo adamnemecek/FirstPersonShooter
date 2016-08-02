@@ -24,8 +24,6 @@ class ZombieAttackState : GKState {
     }
     
     override func updateWithDeltaTime(seconds: NSTimeInterval) {
-        //print("In idle state update")
-        //self.stateMachine!.enterState(ZombieChaseState.self)
         guard let renderComponent = enemy.componentForClass(RenderComponent.self) else {
             return
         }

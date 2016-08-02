@@ -24,7 +24,6 @@ class PlayerAttackState : GKState {
     }
     
     override func updateWithDeltaTime(seconds: NSTimeInterval) {
-        print("In attack state update")
         let player = self.player as! PlayerEntity
         let direction = GameScenesManager.sharedInstance.currentLevel!.controllerDirection()
         

@@ -8,10 +8,12 @@
 
 import SceneKit
 import SpriteKit
+import GameplayKit
 import GameController
 
 
 class GameLevel1 : NSObject, GameLevel {
+    
     var scene:SCNScene?
     var scnView:SCNView?
     var hudNode:HUDNode?
@@ -21,6 +23,7 @@ class GameLevel1 : NSObject, GameLevel {
     var deltaTime:NSTimeInterval = 0.0
     
     var debugNode:SCNNode?
+    var entityManager: EntityManager?
     var firstPerson = true
     
     override init() {
@@ -69,6 +72,11 @@ class GameLevel1 : NSObject, GameLevel {
         
         self.addHUD()
         self.setupGameControllers()
+        
+        let graph = GKGridGraph(fromGridStartingAt: (vector_int2)(0,0), width: 64, height: 64, diagonalsAllowed: false)
+        entityManager = EntityManager(scene: self.scene!, navigationGraph:graph)
+        entityManager!.createZombie()
+        entityManager!.createPlayer()
         return scn
     }
     
@@ -81,6 +89,8 @@ class GameLevel1 : NSObject, GameLevel {
         
         _ = self.controllerDirection()
         //print("Direction is \(direction)")
+        
+        entityManager?.update(deltaTime)
         
     }
     
@@ -173,6 +183,44 @@ class GameLevel1 : NSObject, GameLevel {
         self.hudNode = HUDNode(scene:overlayScene, size: overlayScene.size)
         overlayScene.addChild(hudNode!)
     }
+    
+    func registerListeners() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.playerDeadNotification), name: Constants.GameEvents.PLAYER_DEAD, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.healthLowNotification), name: Constants.GameEvents.HEALTH_LOW, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.successfulCompletion), name: Constants.GameEvents.LEVEL_COMPLETE, object: nil)
+    }
+    
+    func unregisterListeners() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.GameEvents.PLAYER_DEAD, object:nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.GameEvents.HEALTH_LOW, object:nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.GameEvents.LEVEL_COMPLETE, object:nil)
+        
+        
+    }
+    
+    func playerDeadNotification() {
+        print("Received player dead notification")
+        self.levelFailed()
+    }
+    
+    func healthLowNotification() {
+        print("Received health low notification")
+    }
+    
+    func successfulCompletion() {
+        self.levelCompleted()
+    }
+
+    private func setupSounds() {
+        let backgroundMusicSource = SCNAudioSource(named: "art.scnassets/sounds/background_music.m4a")
+        backgroundMusicSource!.volume = 0.2
+        let player = SCNAudioPlayer(source:backgroundMusicSource!)
+        backgroundMusicSource!.loops = true
+        backgroundMusicSource!.shouldStream = true
+        backgroundMusicSource!.positional = false
+        self.scene!.rootNode.addAudioPlayer(player)
+    }
+
     
     private func panCamera(displacement:float2) {
         print("Displacement is \(displacement)")
@@ -274,11 +322,7 @@ class GameLevel1 : NSObject, GameLevel {
     func keyDown(theEvent: NSEvent) {
         if(theEvent.keyCode == 36) {
             // Return Key
-            
-            let val = SCNUtils.calculateAngleBetweenCameraAndNode(sceneCamera!, node:debugNode!)
-            let radius = abs(sceneCamera!.position.z - debugNode!.position.z)
-            sceneCamera!.turnCameraAroundNode(debugNode!, radius: radius, angleInDegrees: Float(val))
-            
+            NSNotificationCenter.defaultCenter().postNotificationName(Constants.GameEvents.ATTACK_ENEMY, object: nil)
             return
         }
         if let direction = KeyboardDirection(rawValue: theEvent.keyCode) {
@@ -320,7 +364,11 @@ class GameLevel1 : NSObject, GameLevel {
                     padTouch = touch
                     controllerStoredDirection = float2(0.0)
                 }
-            } else if let _ = node.name { // Check if node name is not nil
+            } else if let name = node.name { // Check if node name is not nil
+                print("Node NAME is \(name)")
+                if (name == "attackNode") {
+                    NSNotificationCenter.defaultCenter().postNotificationName(Constants.GameEvents.ATTACK_ENEMY, object: nil)
+                }
                 break
             } else if panningTouch == nil {
                 // Start panning
@@ -390,18 +438,29 @@ class GameLevel1 : NSObject, GameLevel {
 //MARK: GameLevel protocol methods
 extension GameLevel1 {
     func startLevel() {
+        registerListeners()
+        setupSounds()
     }
     
     func pauseLevel() {
     }
     
     func stopLevel() {
+        unregisterListeners()
+        hudNode?.removeControls()
     }
     
     func levelFailed() {
+        unregisterListeners()
+        hudNode?.removeControls()
+        GameScenesManager.sharedInstance.setGameState(.LevelFailed, levelIndex:0)
     }
     
     func levelCompleted() {
+        unregisterListeners()
+        hudNode?.removeControls()
+        GameScenesManager.sharedInstance.setGameState(.LevelComplete, levelIndex:0)
+
     }
     
     

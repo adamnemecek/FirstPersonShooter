@@ -24,7 +24,6 @@ class PlayerDeadState : GKState {
     }
 
     override func updateWithDeltaTime(seconds: NSTimeInterval) {
-        print("In dead state update")
         // self.entityManager.remove(enemy)
     }
 }

@@ -24,7 +24,6 @@ class PlayerIdleState : GKState {
     }
     
     override func updateWithDeltaTime(seconds: NSTimeInterval) {
-        //print("In idle state update")   
         let direction = GameScenesManager.sharedInstance.currentLevel!.controllerDirection()
         
         if(direction.x != 0.0 || direction.y != 0.0 ) {

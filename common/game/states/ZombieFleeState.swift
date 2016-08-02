@@ -23,6 +23,5 @@ class ZombieFleeState : GKState {
     }
     
     override func updateWithDeltaTime(seconds: NSTimeInterval) {
-        print("In flee state update")
     }
 }
