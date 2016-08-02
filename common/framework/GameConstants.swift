@@ -66,6 +66,7 @@ struct Constants {
         static let PLAYER_DEAD = "PlayerDead"
         static let LEVEL_COMPLETE = "LevelComplete"
         static let GAME_STARTED = "GameStarted"
+        static let ATTACK_ENEMY = "AttackEnemy"
         static let ENEMY_DESTROYED = "EnemyDestroyed"
         static let LEVEL_ENDED = "LevelEnded"
         static let AMMO_COLLECTED = "AmmoCollected"

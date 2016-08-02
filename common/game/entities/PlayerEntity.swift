@@ -18,7 +18,8 @@ enum PlayerAnimationState : Int {
 }
 
 class PlayerEntity : GKEntity {
-    var missionAccomplished:Bool = false
+    var missionAccomplished = false
+    var isAttacking = false
     let contactTestBitMask = ColliderType.Enemy.rawValue | ColliderType.LeftWall.rawValue | ColliderType.RightWall.rawValue | ColliderType.BackWall.rawValue | ColliderType.FrontWall.rawValue | ColliderType.Door.rawValue | ColliderType.Ground.rawValue | ColliderType.PowerUp.rawValue
     
     // Put ourself into the player category so other objects can limit their scope of collision checks.

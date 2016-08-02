@@ -168,7 +168,6 @@ extension GameLevelsMenu {
     
     private func handleSelection(view:SCNView, location:CGPoint) {
         let node:SKNode = (scnView?.overlaySKScene!.nodeAtPoint(location))!
-        print("NODE NAME IS \(node.name)")
 
         if (node.name == self.levelName1) {
             GameScenesManager.sharedInstance.setGameState(.InGame, levelIndex:0)

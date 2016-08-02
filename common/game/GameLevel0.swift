@@ -322,14 +322,7 @@ class GameLevel0 : NSObject, GameLevel {
     func keyDown(theEvent: NSEvent) {
         if(theEvent.keyCode == 36) {
             // Return Key
-            /*
-            self.hudNode?.setHealth(0.2)
-            let val = SCNUtils.calculateAngleBetweenCameraAndNode(sceneCamera!, node:debugNode!)
-            let radius = abs(sceneCamera!.position.z - debugNode!.position.z)
-            sceneCamera!.turnCameraAroundNode(debugNode!, radius: radius, angleInDegrees: Float(val))
-            */
-            entityManager!.player!.missionAccomplished = true
-            
+            NSNotificationCenter.defaultCenter().postNotificationName(Constants.GameEvents.ATTACK_ENEMY, object: nil)
             return
         }
         if let direction = KeyboardDirection(rawValue: theEvent.keyCode) {
@@ -371,7 +364,11 @@ class GameLevel0 : NSObject, GameLevel {
                     padTouch = touch
                     controllerStoredDirection = float2(0.0)
                 }
-            } else if let _ = node.name { // Check if node name is not nil
+            } else if let name = node.name { // Check if node name is not nil
+                print("Node NAME is \(name)")
+                if (name == "attackNode") {
+                    NSNotificationCenter.defaultCenter().postNotificationName(Constants.GameEvents.ATTACK_ENEMY, object: nil)
+                }
                 break
             } else if panningTouch == nil {
                 // Start panning

@@ -274,8 +274,6 @@ class GameLevel2 : NSObject, GameLevel {
     func keyDown(theEvent: NSEvent) {
         if(theEvent.keyCode == 36) {
             // Return Key
-            
-            self.hudNode?.setHealth(0.2)
             let val = SCNUtils.calculateAngleBetweenCameraAndNode(sceneCamera!, node:debugNode!)
             let radius = abs(sceneCamera!.position.z - debugNode!.position.z)
             sceneCamera!.turnCameraAroundNode(debugNode!, radius: radius, angleInDegrees: Float(val))

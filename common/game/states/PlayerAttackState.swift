@@ -20,9 +20,18 @@ class PlayerAttackState : GKState {
     override func didEnterWithPreviousState(previousState: GKState?) {
         let player = self.player as! PlayerEntity
         player.changeAnimationStateTo(PlayerAnimationState.Attack)
+        player.isAttacking = true
     }
     
     override func updateWithDeltaTime(seconds: NSTimeInterval) {
         print("In attack state update")
+        let player = self.player as! PlayerEntity
+        let direction = GameScenesManager.sharedInstance.currentLevel!.controllerDirection()
+        
+        if(direction.x != 0.0 || direction.y != 0.0 ) {
+            player.isAttacking = false
+            self.stateMachine!.enterState(PlayerWalkState.self)
+        }
+        
     }
 }

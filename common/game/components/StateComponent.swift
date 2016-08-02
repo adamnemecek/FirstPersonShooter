@@ -38,10 +38,13 @@ class StateComponent: GKComponent {
             stateMachine!.enterState(PlayerIdleState.self)
             
         } else {
-            return
         }
-        
-        
+        super.init()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.attackNotificationReceived), name: Constants.GameEvents.ATTACK_ENEMY, object: nil)
+    }
+    
+    func attackNotificationReceived() {
+        stateMachine!.enterState(PlayerAttackState.self)
     }
     
     override func updateWithDeltaTime(seconds: NSTimeInterval) {
@@ -52,7 +55,6 @@ class StateComponent: GKComponent {
                     self.stateMachine!.enterState(PlayerDeadState.self)
                     return
                 } else {
-                    print("CURRENT HEALTH:\(healthComponent.currentHealth)")
                     if(healthComponent.currentHealth <= 0.0) {
                         self.stateMachine!.enterState(PlayerDeadState.self)
                         return
