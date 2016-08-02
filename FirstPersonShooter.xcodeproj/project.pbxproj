@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		956953321D50E15D00C25CC8 /* NavigationMeshGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956953301D50E15D00C25CC8 /* NavigationMeshGraph.swift */; };
+		956953331D50E15D00C25CC8 /* NavigationMeshPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956953311D50E15D00C25CC8 /* NavigationMeshPolygon.swift */; };
+		956953341D50E17200C25CC8 /* NavigationMeshGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956953301D50E15D00C25CC8 /* NavigationMeshGraph.swift */; };
+		956953351D50E17200C25CC8 /* NavigationMeshPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956953311D50E15D00C25CC8 /* NavigationMeshPolygon.swift */; };
 		9589A9341D4AB2FE0084950D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9331D4AB2FE0084950D /* AppDelegate.swift */; };
 		9589A9361D4AB2FE0084950D /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9351D4AB2FE0084950D /* GameView.swift */; };
 		9589A93C1D4AB2FE0084950D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9589A93B1D4AB2FE0084950D /* Assets.xcassets */; };
@@ -86,6 +90,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		956953301D50E15D00C25CC8 /* NavigationMeshGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationMeshGraph.swift; path = common/framework/pathfinding/NavigationMeshGraph.swift; sourceTree = "<group>"; };
+		956953311D50E15D00C25CC8 /* NavigationMeshPolygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationMeshPolygon.swift; path = common/framework/pathfinding/NavigationMeshPolygon.swift; sourceTree = "<group>"; };
 		9589A9301D4AB2FE0084950D /* FirstPersonShooter-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FirstPersonShooter-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9589A9331D4AB2FE0084950D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9589A9351D4AB2FE0084950D /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -152,6 +158,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9569532F1D50E14B00C25CC8 /* pathfinding */ = {
+			isa = PBXGroup;
+			children = (
+				956953301D50E15D00C25CC8 /* NavigationMeshGraph.swift */,
+				956953311D50E15D00C25CC8 /* NavigationMeshPolygon.swift */,
+			);
+			name = pathfinding;
+			sourceTree = "<group>";
+		};
 		9589A9271D4AB2FE0084950D = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +237,7 @@
 		9589A9601D4AB4C90084950D /* framework */ = {
 			isa = PBXGroup;
 			children = (
+				9569532F1D50E14B00C25CC8 /* pathfinding */,
 				9589A99F1D4BD0820084950D /* SCNUtils.swift */,
 				9589A96D1D4AE5510084950D /* GameConstants.swift */,
 				9589A9671D4AB7450084950D /* GameViewController.swift */,
@@ -398,6 +414,7 @@
 				9589A9AC1D4E39910084950D /* EntityManager.swift in Sources */,
 				9589A97A1D4B924D0084950D /* GameLevel2.swift in Sources */,
 				9589A9D91D4EA01F0084950D /* PlayerWalkState.swift in Sources */,
+				956953331D50E15D00C25CC8 /* NavigationMeshPolygon.swift in Sources */,
 				9589A9B21D4E3A450084950D /* RenderComponent.swift in Sources */,
 				9589A9651D4AB6130084950D /* GameSceneView.swift in Sources */,
 				9589A9B51D4E3A590084950D /* StateComponent.swift in Sources */,
@@ -418,6 +435,7 @@
 				9589A9781D4B924D0084950D /* GameLevel1.swift in Sources */,
 				95FA861E1D4FE04D003FFAC5 /* ZombieAttackState.swift in Sources */,
 				9589A96E1D4AE5510084950D /* GameConstants.swift in Sources */,
+				956953321D50E15D00C25CC8 /* NavigationMeshGraph.swift in Sources */,
 				9589A9A31D4BFAA20084950D /* HUDNode.swift in Sources */,
 				9589A9BE1D4E45A90084950D /* HealthComponent.swift in Sources */,
 				9589A9DC1D4EA1790084950D /* PlayerControlComponent.swift in Sources */,
@@ -429,6 +447,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				956953341D50E17200C25CC8 /* NavigationMeshGraph.swift in Sources */,
+				956953351D50E17200C25CC8 /* NavigationMeshPolygon.swift in Sources */,
 				95FA861F1D501175003FFAC5 /* ZombieAttackState.swift in Sources */,
 				95FA86191D4FDA5B003FFAC5 /* LevelCompleteMenu.swift in Sources */,
 				95FA861A1D4FDA5B003FFAC5 /* LevelFailedMenu.swift in Sources */,
