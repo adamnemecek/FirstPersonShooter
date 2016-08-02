@@ -29,7 +29,6 @@ class SCNUtils {
         return myLabel;
     }
 
-
     func loadSceneFile(filename:String) -> (SCNNode, SCNNode) {
         let escene = SCNScene(named:filename)
         let rootNode = escene!.rootNode

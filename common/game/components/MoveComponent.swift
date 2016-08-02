@@ -38,9 +38,36 @@ class MoveComponent : GKAgent2D, GKAgentDelegate {
         self.mass = 0.01
         
         self.path = GKPath(points: &points, count: 10, radius: 10.0, cyclical: true)
-        
+        /*
+        let pathNodeArray = createPath(SCNVector3Make(-175.0, 0.0, -150.0), endPosition:SCNVector3Make(175.0, 0.0, 150.0))
+        self.path = GKPath(graphNodes: pathNodeArray, radius: 1.0)
+         */
     }
 
+    func createPath(startPosition:SCNVector3, endPosition:SCNVector3) -> [GKGraphNode2D] {
+        var points:[vector_float2] = [float2(-150, -10), float2(150, -10), float2(150,20), float2(-150, 20)]
+        let obstacle = GKPolygonObstacle(points:&points, count:4)
+        let graph = GKObstacleGraph(obstacles: [obstacle], bufferRadius: 1.0)
+        
+        let startPoint:vector_float2 = float2(Float(startPosition.x), Float(startPosition.z))
+        let endPoint:vector_float2 = float2(Float(endPosition.x), Float(endPosition.z))
+
+        let startNode = GKGraphNode2D(point: startPoint)
+        let endNode = GKGraphNode2D(point: endPoint)
+        
+        graph.connectNodeUsingObstacles(startNode)
+        graph.connectNodeUsingObstacles(endNode)
+        
+        let mypath = graph.findPathFromNode(startNode, toNode: endNode) as! [GKGraphNode2D]
+        
+        print("Start node is \(startNode)")
+        for node in mypath {
+            print("Node in path is \(node)")
+        }
+        print("End node is \(endNode)")
+        return mypath
+    }
+    
     func agentWillUpdate(agent: GKAgent) {
         //print("In agent will update, position:\(position)")
         guard let renderComponent = entity?.componentForClass(RenderComponent.self) else {
@@ -82,7 +109,9 @@ class MoveComponent : GKAgent2D, GKAgentDelegate {
             behavior!.removeAllGoals()
             return
         }
+        
         behavior = MoveBehavior(targetSpeed: maxSpeed, seek: playerComponent, avoid: [], path:path)
+
     }
 }
 
