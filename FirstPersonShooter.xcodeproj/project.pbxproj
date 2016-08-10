@@ -79,6 +79,10 @@
 		9589A9DA1D4EA01F0084950D /* PlayerWalkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9D21D4EA01F0084950D /* PlayerWalkState.swift */; };
 		9589A9DC1D4EA1790084950D /* PlayerControlComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9DB1D4EA1780084950D /* PlayerControlComponent.swift */; };
 		9589A9DD1D4EA1790084950D /* PlayerControlComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589A9DB1D4EA1780084950D /* PlayerControlComponent.swift */; };
+		95EF6F2F1D5B6C1B00A7BA30 /* GameTerrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF6F2E1D5B6C1B00A7BA30 /* GameTerrain.swift */; };
+		95EF6F301D5B6C1B00A7BA30 /* GameTerrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF6F2E1D5B6C1B00A7BA30 /* GameTerrain.swift */; };
+		95EF6F321D5B6C8100A7BA30 /* PerlinNoiseGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF6F311D5B6C8100A7BA30 /* PerlinNoiseGenerator.swift */; };
+		95EF6F331D5B6C8100A7BA30 /* PerlinNoiseGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF6F311D5B6C8100A7BA30 /* PerlinNoiseGenerator.swift */; };
 		95FA86131D4F932E003FFAC5 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FA86121D4F932E003FFAC5 /* PhysicsComponent.swift */; };
 		95FA86141D4F94C5003FFAC5 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FA86121D4F932E003FFAC5 /* PhysicsComponent.swift */; };
 		95FA86171D4FD9F5003FFAC5 /* LevelCompleteMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FA86151D4FD9F5003FFAC5 /* LevelCompleteMenu.swift */; };
@@ -134,6 +138,8 @@
 		9589A9D11D4EA01F0084950D /* PlayerIdleState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerIdleState.swift; path = common/game/states/PlayerIdleState.swift; sourceTree = "<group>"; };
 		9589A9D21D4EA01F0084950D /* PlayerWalkState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerWalkState.swift; path = common/game/states/PlayerWalkState.swift; sourceTree = "<group>"; };
 		9589A9DB1D4EA1780084950D /* PlayerControlComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerControlComponent.swift; path = common/game/components/PlayerControlComponent.swift; sourceTree = "<group>"; };
+		95EF6F2E1D5B6C1B00A7BA30 /* GameTerrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameTerrain.swift; path = common/framework/terrain/GameTerrain.swift; sourceTree = "<group>"; };
+		95EF6F311D5B6C8100A7BA30 /* PerlinNoiseGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PerlinNoiseGenerator.swift; path = common/framework/terrain/PerlinNoiseGenerator.swift; sourceTree = "<group>"; };
 		95FA86121D4F932E003FFAC5 /* PhysicsComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhysicsComponent.swift; path = common/game/components/PhysicsComponent.swift; sourceTree = "<group>"; };
 		95FA86151D4FD9F5003FFAC5 /* LevelCompleteMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LevelCompleteMenu.swift; path = common/game/menus/LevelCompleteMenu.swift; sourceTree = "<group>"; };
 		95FA86161D4FD9F5003FFAC5 /* LevelFailedMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LevelFailedMenu.swift; path = common/game/menus/LevelFailedMenu.swift; sourceTree = "<group>"; };
@@ -237,6 +243,7 @@
 		9589A9601D4AB4C90084950D /* framework */ = {
 			isa = PBXGroup;
 			children = (
+				95EF6F2D1D5B6BE400A7BA30 /* terrain */,
 				9569532F1D50E14B00C25CC8 /* pathfinding */,
 				9589A99F1D4BD0820084950D /* SCNUtils.swift */,
 				9589A96D1D4AE5510084950D /* GameConstants.swift */,
@@ -298,6 +305,15 @@
 				95FA861D1D4FE04D003FFAC5 /* ZombieAttackState.swift */,
 			);
 			name = states;
+			sourceTree = "<group>";
+		};
+		95EF6F2D1D5B6BE400A7BA30 /* terrain */ = {
+			isa = PBXGroup;
+			children = (
+				95EF6F2E1D5B6C1B00A7BA30 /* GameTerrain.swift */,
+				95EF6F311D5B6C8100A7BA30 /* PerlinNoiseGenerator.swift */,
+			);
+			name = terrain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -412,6 +428,7 @@
 				9589A9711D4B8C9C0084950D /* GameLevel.swift in Sources */,
 				95FA86131D4F932E003FFAC5 /* PhysicsComponent.swift in Sources */,
 				9589A9AC1D4E39910084950D /* EntityManager.swift in Sources */,
+				95EF6F321D5B6C8100A7BA30 /* PerlinNoiseGenerator.swift in Sources */,
 				9589A97A1D4B924D0084950D /* GameLevel2.swift in Sources */,
 				9589A9D91D4EA01F0084950D /* PlayerWalkState.swift in Sources */,
 				956953331D50E15D00C25CC8 /* NavigationMeshPolygon.swift in Sources */,
@@ -420,6 +437,7 @@
 				9589A9B51D4E3A590084950D /* StateComponent.swift in Sources */,
 				9589A9C81D4E46380084950D /* ZombieFleeState.swift in Sources */,
 				9589A9C61D4E46380084950D /* ZombieDeadState.swift in Sources */,
+				95EF6F2F1D5B6C1B00A7BA30 /* GameTerrain.swift in Sources */,
 				9589A9AF1D4E3A300084950D /* MoveComponent.swift in Sources */,
 				9589A9D71D4EA01F0084950D /* PlayerIdleState.swift in Sources */,
 				95FA86171D4FD9F5003FFAC5 /* LevelCompleteMenu.swift in Sources */,
@@ -459,9 +477,11 @@
 				9589A9691D4AB7450084950D /* GameViewController.swift in Sources */,
 				9589A9661D4AB6130084950D /* GameSceneView.swift in Sources */,
 				9589A9BC1D4E44210084950D /* ZombieEntity.swift in Sources */,
+				95EF6F301D5B6C1B00A7BA30 /* GameTerrain.swift in Sources */,
 				9589A9B31D4E3A450084950D /* RenderComponent.swift in Sources */,
 				9589A9C91D4E46380084950D /* ZombieFleeState.swift in Sources */,
 				9589A97F1D4B954F0084950D /* GameLevelsMenu.swift in Sources */,
+				95EF6F331D5B6C8100A7BA30 /* PerlinNoiseGenerator.swift in Sources */,
 				9589A9751D4B8E6E0084950D /* GameLevel0.swift in Sources */,
 				9589A9A11D4BD0820084950D /* SCNUtils.swift in Sources */,
 				9589A94D1D4AB3FF0084950D /* AppDelegate.swift in Sources */,

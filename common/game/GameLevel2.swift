@@ -12,6 +12,9 @@ import GameController
 
 
 class GameLevel2 : NSObject, GameLevel {
+    private let levelWidth = 320
+    private let levelLength = 320
+    
     var scene:SCNScene?
     var scnView:SCNView?
     var hudNode:HUDNode?
@@ -31,9 +34,12 @@ class GameLevel2 : NSObject, GameLevel {
     
     func createLevel(scnView:SCNView) -> SCNScene {
         self.scnView = scnView
+        self.scnView!.debugOptions = SCNDebugOptions.ShowWireframe
+
         
         // create a new scene
         scene = SCNScene()
+        scene!.background.contents = ["art.scnassets/common/cubemap/right.jpg", "art.scnassets/common/cubemap/left.jpg", "art.scnassets/common/cubemap/top.jpg", "art.scnassets/common/cubemap/bottom.jpg", "art.scnassets/common/cubemap/back.jpg", "art.scnassets/common/cubemap/front.jpg"]
         
         guard let scn = scene else {
             fatalError("Scene not created")
@@ -45,8 +51,8 @@ class GameLevel2 : NSObject, GameLevel {
         scn.rootNode.addChildNode(sceneCamera!)
         
         // place the camera
-        sceneCamera!.position = SCNVector3(x: 0, y: 110, z: 200)
-        sceneCamera!.rotation = SCNVector4Make(1.0, 0.0, 0.0, -SCNFloat(M_PI_4))
+        sceneCamera!.position = SCNVector3(x: 160, y: 10, z: 320)
+        //sceneCamera!.rotation = SCNVector4Make(1.0, 0.0, 0.0, -SCNFloat(M_PI_4))
 
         // create and add a light to the scene
         let lightNode = SCNNode()
@@ -62,7 +68,8 @@ class GameLevel2 : NSObject, GameLevel {
         ambientLightNode.light!.color = SKColor.darkGrayColor()
         scn.rootNode.addChildNode(ambientLightNode)
         
-        self.addFloorAndWalls()
+        self.addTerrain()
+        //self.addFloorAndWalls()
         self.addProps()
         
         //scnView.allowsCameraControl = true
@@ -174,6 +181,20 @@ class GameLevel2 : NSObject, GameLevel {
         overlayScene.addChild(hudNode!)
     }
     
+    private func addTerrain() {
+        // Create terrain
+        let terrain = GameTerrain(width: levelWidth, length: levelLength, scale: 128)
+        
+        let generator = PerlinNoiseGenerator(seed: nil)
+        terrain.formula = {(x: Int32, y: Int32) in
+            return generator.valueFor(x, y: y)
+        }
+        
+        terrain.create(withColor: SKColor.greenColor())
+        terrain.position = SCNVector3Make(0, 0, 0)
+        scene!.rootNode.addChildNode(terrain)
+    }
+
     private func panCamera(displacement:float2) {
         print("Displacement is \(displacement)")
         if(abs(displacement.x) > abs(displacement.y)) {
