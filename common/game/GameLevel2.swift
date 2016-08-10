@@ -34,7 +34,7 @@ class GameLevel2 : NSObject, GameLevel {
     
     func createLevel(scnView:SCNView) -> SCNScene {
         self.scnView = scnView
-        self.scnView!.debugOptions = SCNDebugOptions.ShowWireframe
+        //self.scnView!.debugOptions = SCNDebugOptions.ShowWireframe
 
         
         // create a new scene
@@ -184,13 +184,20 @@ class GameLevel2 : NSObject, GameLevel {
     private func addTerrain() {
         // Create terrain
         let terrain = GameTerrain(width: levelWidth, length: levelLength, scale: 128)
+        #if os(OSX)
+            let imageName = NSBundle.mainBundle().pathForResource("art.scnassets/textures/ground-terrain", ofType:"png")
+            let texture = NSImage(contentsOfFile:imageName!)
+        #else
+            let texture = GameImage(named:"art.scnassets/textures/ground-terrain.png")
+        #endif
         
         let generator = PerlinNoiseGenerator(seed: nil)
         terrain.formula = {(x: Int32, y: Int32) in
             return generator.valueFor(x, y: y)
         }
         
-        terrain.create(withColor: SKColor.greenColor())
+        //terrain.create(withColor: SKColor.greenColor())
+        terrain.create(withImage: texture)
         terrain.position = SCNVector3Make(0, 0, 0)
         scene!.rootNode.addChildNode(terrain)
     }
